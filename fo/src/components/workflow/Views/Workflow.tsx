@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ComponentsPathEnum, IWorkflowState } from "../";
-import { BookmarkForm, BookmarkList } from "../../bookmark";
+import { BookmarkForm, BookmarkTable } from "../../bookmark";
 import { Layout } from "../../layout";
 import { Signin } from "../../signin";
 import { CreateAccount, GetUser } from "../../user";
@@ -31,7 +31,7 @@ export default class Workflow extends React.Component<{}, IWorkflowState> {
             return <Router>
                 <Layout user={this.state.user}>
                     <Switch>
-                        <Route exact={true} path={ComponentsPathEnum.HOME} component={BookmarkList} />
+                        <Route exact={true} path={ComponentsPathEnum.HOME} component={BookmarkTable} />
                         <Route exact={true} path={ComponentsPathEnum.BOOKMARK_FORM} component={BookmarkForm} />
                         <Route component={NotFound} />
                     </Switch>

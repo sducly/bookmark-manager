@@ -1,7 +1,7 @@
 import BookmarkFormView from "./Views/Form";
-import BookmarkListView from "./Views/List";
+import BookmarkTableView from "./Views/Table";
 
-export const BookmarkList = BookmarkListView;
+export const BookmarkTable = BookmarkTableView;
 export  const BookmarkForm = BookmarkFormView;
 
 export * from "./queries";

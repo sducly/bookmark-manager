@@ -1,10 +1,10 @@
 import FormView from "./Views/FormComponent";
-import PaginateListView from "./Views/PaginateComponent";
 import QueryView from "./Views/QueryComponent";
+import TableComponentView from "./Views/TableComponent";
 
 export const Form = FormView;
-export const PaginateList = PaginateListView;
 export const Query = QueryView;
+export const Table = TableComponentView;
 
 export * from "./type";
 export * from "./Views/WidgetsComponent";

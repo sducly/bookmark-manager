@@ -21,7 +21,7 @@ import { RemoveToken } from '../../user';
 import { ComponentsPathEnum, redirect } from '../../workflow';
 import { ILayoutProps } from '../types';
 
-class Layout extends React.Component<ILayoutProps, {open: boolean}> {
+class Layout extends React.Component<ILayoutProps, { open: boolean }> {
 
   constructor(props: ILayoutProps) {
     super(props);
@@ -59,7 +59,7 @@ class Layout extends React.Component<ILayoutProps, {open: boolean}> {
                 {user.lastName} {user.firstName}
               </Typography>
               <IconButton color="inherit" onClick={this.logOut}>
-                  <ExitToAppIcon />
+                <ExitToAppIcon />
               </IconButton>
             </Toolbar>
           </AppBar>
@@ -79,6 +79,7 @@ class Layout extends React.Component<ILayoutProps, {open: boolean}> {
             <List>{mainListItems}</List>
           </Drawer>
           <main className={classes.content}>
+            <div className={classes.appBarSpacer} />
             {this.props.children}
           </main>
         </div>

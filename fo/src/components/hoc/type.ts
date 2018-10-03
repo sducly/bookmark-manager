@@ -33,10 +33,7 @@ export interface IPaginateResponse extends IQueryResponse, IFetchMoreProps{
 }
 
 export interface IPaginateProps extends IQueryProps {
-    variables: {
-        limit: number,
-        offset: number
-    }
+    limit: number
 }
 
 export interface IInputProps {

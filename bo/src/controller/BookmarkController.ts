@@ -8,11 +8,16 @@ export class BookmarkController {
   constructor(private entityManager: EntityManager) {
   }
 
+  @Query()
+  countBookmark() {
+    return this.entityManager.createQueryBuilder(Bookmark, "b").getCount();
+  }
+  
   // serves "Bookmark: [Bookmark]" requests
   @Query()
-  bookmarks({offset = 0, limit=1}) {
+  bookmarks({page = 1, limit=1}) {
     const query = this.entityManager.createQueryBuilder(Bookmark, "b");
-    return query.limit(limit).offset(offset).getMany();
+    return query.limit(limit).offset((page-1) * limit).getMany();
   }
 
   // serves "BookmarkGet(id: Int): Bookmark" requests

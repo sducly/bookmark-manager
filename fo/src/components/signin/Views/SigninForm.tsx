@@ -4,13 +4,13 @@ import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import { Link } from 'react-router-dom';
+
 import { ISiginFormProps } from "../";
 import { ComponentsPathEnum } from '../../workflow';
 
 export default class SigninForm extends React.Component<ISiginFormProps, {}> {
     public render() {
-        const {classes} = this.props;
+        const { classes } = this.props;
         return <React.Fragment>
             <FormControl margin="normal" required={true} fullWidth={true}>
                 <InputLabel htmlFor="email">Email Address</InputLabel>
@@ -25,9 +25,17 @@ export default class SigninForm extends React.Component<ISiginFormProps, {}> {
                     autoComplete="current-password"
                 />
             </FormControl>
+
+            <Button
+                href={ComponentsPathEnum.CREATE_ACCOUNT}
+                className={classes.submit}
+                style={{
+                    float: "right"
+                }}>
+                Create a account
+            </Button>
             <Button
                 type="submit"
-                fullWidth={true}
                 variant="raised"
                 color="primary"
                 className={classes.submit}
@@ -35,9 +43,7 @@ export default class SigninForm extends React.Component<ISiginFormProps, {}> {
                 Sign in
             </Button>
 
-            <Link to={ComponentsPathEnum.CREATE_ACCOUNT}>
-                Create a account
-            </Link>
+
         </React.Fragment>
     }
 }

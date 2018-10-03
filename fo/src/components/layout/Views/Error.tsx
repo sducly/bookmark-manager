@@ -19,6 +19,6 @@ export default class Error extends React.Component<IErrorProps, {}> {
     }
 
     private refreshApp() {
-        window.location.reload();
+        // window.location.reload();
     }
 }

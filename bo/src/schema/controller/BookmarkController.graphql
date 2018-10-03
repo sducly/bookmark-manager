@@ -1,3 +1,4 @@
 type Query {
-    bookmarks(limit: Int, offset: Int): [Bookmark]
+    bookmarks(limit: Int, page: Int): [Bookmark]
+    countBookmark: Int
 }

@@ -68,6 +68,10 @@ const AppStyle = (theme: Theme) => {
         width: 400,
       },
     },
+    leftIcon: {
+      marginRight: theme.spacing.unit,
+      
+    },
     menuButton: {
       marginLeft: 12,
       marginRight: 36,
@@ -89,6 +93,10 @@ const AppStyle = (theme: Theme) => {
     },
     submit: {
       marginTop: theme.spacing.unit * 3,
+    },
+    table: {
+      backgroundColor: "white",
+      margin: "5px 10px"
     },
     tableContainer: {
       height: 320,
