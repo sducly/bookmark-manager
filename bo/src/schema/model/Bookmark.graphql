@@ -1,0 +1,11 @@
+type Bookmark {
+    id: Int
+    url: String
+    title: String
+    authorName: String
+    addedDate: String
+    width: Int
+    height: Int
+    video: Video
+    user: User
+}

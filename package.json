@@ -1,0 +1,21 @@
+{
+  "name": "todo_review",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "S. DUCLY",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn run start_bo | yarn run start_fo",
+    "install": "yarn run install_bo && yarn run install_fo",
+    "start_bo": "cd bo && yarn run start",
+    "start_fo": "cd fo && yarn run start",
+    "install_bo": "cd bo && yarn",
+    "install_fo": "cd fo && yarn"
+  },
+  "dependencies": {
+    "@material-ui/core": "^3.1.1",
+    "@material-ui/icons": "^3.0.1",
+    "classnames": "^2.2.6",
+    "crypto": "^1.0.1"
+  }
+}

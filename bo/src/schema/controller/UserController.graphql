@@ -1,0 +1,10 @@
+type Query {
+    users: [User]
+    authenticateUser(email: String, password: String): User
+    getUserByToken(token: String): User
+}
+
+type Mutation {
+    addUser(firstName: String, lastName: String, email: String, password: String) : User
+    
+}

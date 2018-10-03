@@ -1,0 +1,10 @@
+type User {
+    id: String
+    firstName: String
+    lastName: String,
+    email: String,
+    salt: String,
+    password: String,
+    token: String,
+    bookmark: [Bookmark]
+}
