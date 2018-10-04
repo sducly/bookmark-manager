@@ -3,29 +3,35 @@ import * as React from "react";
 import { Table, TableFooter, TablePagination, TableRow } from "@material-ui/core";
 import { ApolloQueryResult } from "apollo-boost";
 import { Query } from "../";
-import { IPaginateProps, IQueryResponse } from "../";
+import { IQueryResponse, ITableProps } from "../";
 import TablePaginationComponent from "./TablePaginationComponent";
 
 
-export default class TableComponent extends React.Component<IPaginateProps, {}>  {
+export default class TableComponent extends React.Component<ITableProps, {toolbarData: {}}>  {
 
-  private fetch?: (T:any) => Promise<ApolloQueryResult<any>>;
+  private fetch?: (T: any) => Promise<ApolloQueryResult<any>>;
   private page: number = 1;
 
-  constructor(props: IPaginateProps) {
+  constructor(props: ITableProps) {
     super(props);
     this.handleChangePage = this.handleChangePage.bind(this);
+    this.handleToolbarChange = this.handleToolbarChange.bind(this);
+    this.state = {
+      toolbarData: {}
+    }
   }
 
   public render() {
     return <Query query={this.props.query} variables={{
       limit: this.props.limit
-      }}>
+    }}>
       {({ data, fetchMore }: IQueryResponse): any => {
         const children: any = this.props.children;
         this.fetch = fetchMore;
 
-        return <Table>
+        return <React.Fragment>
+          {this.renderToolbar()}
+          <Table>
           {children({ data })}
           <TableFooter>
             <TableRow>
@@ -41,9 +47,34 @@ export default class TableComponent extends React.Component<IPaginateProps, {}> 
             </TableRow>
           </TableFooter>
         </Table>
-
+        </React.Fragment>
       }}
     </Query>
+  }
+
+  private renderToolbar() {
+    if(this.props.toolbar) {
+      const Toolbar = this.props.toolbar;
+      return <form id="table-toolbar" onChange={this.handleToolbarChange}>
+          <Toolbar {...this.state.toolbarData} onChange={this.handleToolbarChange}/>
+      </form>
+    }
+    return;
+  }
+
+  private handleToolbarChange(e: React.SyntheticEvent) {
+    const input: HTMLInputElement = e.target as HTMLInputElement;
+    const data = this.state.toolbarData;
+
+    if (!data.hasOwnProperty(input.name)) {
+      data[input.name] = null;
+    }
+
+    data[input.name] = input.value;
+    this.setState({
+      toolbarData: data
+    })
+    this.handleChangePage(event, this.page);
   }
 
   private handleChangePage = (event: any, page: any) => {
@@ -53,22 +84,20 @@ export default class TableComponent extends React.Component<IPaginateProps, {}> 
       return;
     }
 
+    const variables = {...this.state.toolbarData, limit: this.props.limit,page: this.page};
+
     this.fetch({
       updateQuery: (prev: any, { fetchMoreResult }: any) => {
         if (!fetchMoreResult) {
           return prev;
         }
         return fetchMoreResult;
-        
-      },
-      variables: {
-        limit: this.props.limit,
-        page: this.page
-      }
 
+      },
+      variables
     });
 
-    
+
   };
 
 }

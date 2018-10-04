@@ -9,6 +9,9 @@ export class Bookmark {
   id: number;
 
   @Column()
+  type: String
+
+  @Column()
   url: String
 
   @Column()

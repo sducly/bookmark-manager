@@ -1,5 +1,6 @@
 type Bookmark {
     id: Int
+    type: String
     url: String
     title: String
     authorName: String

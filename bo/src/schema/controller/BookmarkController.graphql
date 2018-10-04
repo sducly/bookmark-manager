@@ -1,4 +1,4 @@
 type Query {
-    bookmarks(limit: Int, page: Int): [Bookmark]
-    countBookmark: Int
+    bookmarks(limit: Int, page: Int, type: String, title: String): [Bookmark]
+    countBookmark(type: String, title: String): Int
 }

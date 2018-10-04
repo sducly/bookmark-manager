@@ -101,6 +101,11 @@ const AppStyle = (theme: Theme) => {
     tableContainer: {
       height: 320,
     },
+    tableToolbar: {
+      background: "white",
+      marginTop: 24,
+      paddingRight: 24, // keep right padding when drawer closed
+    },
     title: {
       flexGrow: 1,
     },

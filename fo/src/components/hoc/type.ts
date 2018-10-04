@@ -28,12 +28,13 @@ export interface IFormProps extends IQueryProps {
     }
 }
 
-export interface IPaginateResponse extends IQueryResponse, IFetchMoreProps{
+export interface ITableResponse extends IQueryResponse, IFetchMoreProps{
     data: {},
 }
 
-export interface IPaginateProps extends IQueryProps {
-    limit: number
+export interface ITableProps extends IQueryProps {
+    limit: number,
+    toolbar?: any
 }
 
 export interface IInputProps {

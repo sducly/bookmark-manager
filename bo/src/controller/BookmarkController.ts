@@ -9,14 +9,35 @@ export class BookmarkController {
   }
 
   @Query()
-  countBookmark() {
-    return this.entityManager.createQueryBuilder(Bookmark, "b").getCount();
+  countBookmark({title, type}) {
+    const query = this.entityManager.createQueryBuilder(Bookmark, "b");
+    
+    if(title) {
+      query.andWhere('b.title LIKE :title', {'title': "%"+title+"%"});
+    }
+
+    if(type) {
+      query.andWhere('b.type = :type', {'type': type});
+    }
+
+    return query.getCount();
   }
   
   // serves "Bookmark: [Bookmark]" requests
   @Query()
-  bookmarks({page = 1, limit=1}) {
+  bookmarks({page = 1, limit=1, title, type}) {
     const query = this.entityManager.createQueryBuilder(Bookmark, "b");
+
+  
+    if(title) {
+      query.andWhere('b.title LIKE :title', {'title': "%"+title+"%"});
+    }
+
+    if(type) {
+      query.andWhere('b.type = :type', {'type': type});
+    }
+
+
     return query.limit(limit).offset((page-1) * limit).getMany();
   }
 
