@@ -1,7 +1,9 @@
 
 import * as React from "react";
 import { Mutation } from "react-apollo";
+import { Redirect } from "react-router";
 import { IFormProps, IFormState, IQueryResponse, Query } from "../";
+import { Client } from "../../../schema";
 
 
 export default class FormComponent extends React.Component<IFormProps, IFormState> {
@@ -11,9 +13,16 @@ export default class FormComponent extends React.Component<IFormProps, IFormStat
     constructor(props: IFormProps) {
         super(props);
         this._onSubmit = this._onSubmit.bind(this);
+        this.state = {
+            data: {}
+        }
     }
 
     public render() {
+
+        if(this.state.redirectUrl) {
+            return <Redirect to={this.state.redirectUrl}/>
+        }
 
         if (!this.props.query) {
             return this.renderMutation({
@@ -69,8 +78,16 @@ export default class FormComponent extends React.Component<IFormProps, IFormStat
             });
 
             const result: any = await this.update({ variables: data });
+
             if (this.props.postSubmit) {
                 this.props.postSubmit(result.data);
+            }
+
+            if(this.props.redirectUrl) {
+                await Client.resetStore();
+                this.setState({
+                    redirectUrl: this.props.redirectUrl
+                })
             }
         }
     }

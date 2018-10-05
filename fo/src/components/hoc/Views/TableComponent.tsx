@@ -22,9 +22,8 @@ export default class TableComponent extends React.Component<ITableProps, {toolba
   }
 
   public render() {
-    return <Query query={this.props.query} variables={{
-      limit: this.props.limit
-    }}>
+    const v = {...this.props.variables, limit: this.props.limit};
+    return <Query query={this.props.query} variables={v}>
       {({ data, fetchMore }: IQueryResponse): any => {
         const children: any = this.props.children;
         this.fetch = fetchMore;

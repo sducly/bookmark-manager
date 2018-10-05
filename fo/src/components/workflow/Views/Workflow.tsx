@@ -22,17 +22,18 @@ export default class Workflow extends React.Component<{}, IWorkflowState> {
 
     public render() {
 
-        if (this.state.user === undefined) {
+        const { user } = this.state;
+        if (user === undefined) {
             return <React.Fragment />
         }
 
-        if (this.state.user) {
+        if (user) {
             // private components
             return <Router>
-                <Layout user={this.state.user}>
+                <Layout user={user}>
                     <Switch>
-                        <Route exact={true} path={ComponentsPathEnum.HOME} component={BookmarkTable} />
-                        <Route exact={true} path={ComponentsPathEnum.BOOKMARK_FORM} component={BookmarkForm} />
+                        <Route exact={true} path={ComponentsPathEnum.HOME} render={(props) => <BookmarkTable {...props} user={user}/>} />
+                        <Route exact={true} path={ComponentsPathEnum.BOOKMARK_FORM} render={(props) => <BookmarkForm {...props} user={user}/>} />
                         <Route component={NotFound} />
                     </Switch>
                 </Layout>

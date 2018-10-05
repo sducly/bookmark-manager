@@ -1,6 +1,7 @@
 import { Controller, Mutation, Query } from 'vesper';
 import { EntityManager } from 'typeorm';
 import { Bookmark } from '../entity/Bookmark';
+import { User } from '../entity/User';
 
 @Controller()
 export class BookmarkController {
@@ -9,8 +10,8 @@ export class BookmarkController {
   }
 
   @Query()
-  countBookmark({title, type}) {
-    const query = this.entityManager.createQueryBuilder(Bookmark, "b");
+  countBookmark({title, type, userId}) {
+    const query = this.entityManager.createQueryBuilder(Bookmark, "b").innerJoin("b.user", "u").andWhere('u.id = :userId', { userId });
     
     if(title) {
       query.andWhere('b.title LIKE :title', {'title': "%"+title+"%"});
@@ -25,8 +26,8 @@ export class BookmarkController {
   
   // serves "Bookmark: [Bookmark]" requests
   @Query()
-  bookmarks({page = 1, limit=1, title, type}) {
-    const query = this.entityManager.createQueryBuilder(Bookmark, "b");
+  bookmarks({page = 1, limit=1, title, type, userId}) {
+    const query = this.entityManager.createQueryBuilder(Bookmark, "b").innerJoin("b.user", "u").andWhere('u.id = :userId', { userId });
 
   
     if(title) {
@@ -49,8 +50,17 @@ export class BookmarkController {
 
   // serves "BookmarkSave(id: Int, date: Date, exercise: Int, diet: Int, alcohol: Int, notes: String): Bookmark" requests
   @Mutation()
-  updateBookmark(args) {
+  async updateBookmark(args) {
     const bookmark = this.entityManager.create(Bookmark, args);
+
+    const {userId} = args;
+
+    console.log("userId", userId, args);
+    if(userId) {
+      const user = await this.entityManager.findOne(User, userId);
+      bookmark.user = user;
+    }
+    
     return this.entityManager.save(Bookmark, bookmark);
   }
 

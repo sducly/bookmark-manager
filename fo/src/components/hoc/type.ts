@@ -17,12 +17,14 @@ export interface IQueryResponse extends IFetchMoreProps {
 
 export interface IFormState{
     data: {};
+    redirectUrl?: string
 }
 
 export interface IFormProps extends IQueryProps {
     postSubmit?: (T:any) => void,
     mutation?: DocumentNode,
     submit?: (T: React.FormEvent) => void,
+    redirectUrl?: string,
     variables?: {
         id: number
     }

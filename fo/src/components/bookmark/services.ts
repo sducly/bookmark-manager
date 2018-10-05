@@ -1,5 +1,6 @@
 import * as moment from "moment";
 import { BookmarkTypeEnum } from "../../schema";
+import { IApiResult } from "./types";
 
 const getPhotoID = (url: string) => {
     const matches = url.match(/(\d+)/g);
@@ -16,12 +17,10 @@ const fetchFlickr = async (method: string, photoID: string) => {
 
 const fetchVimeo = async (url: string) => {
     const result = await fetch("https://vimeo.com/api/oembed.json?url=" + url);
-    // tslint:disable-next-line:no-console
-    console.log(result);
     return (result.status === 200) ? result.json() : null;
 }
 
-export const getPicturesInfo = async (url: string) => {
+export const getPicturesInfo = async (url: string): Promise<IApiResult> => {
     const photoID = getPhotoID(url);
     if (photoID) {
         const photosInfos = await fetchFlickr("getInfo", photoID);
@@ -37,9 +36,6 @@ export const getPicturesInfo = async (url: string) => {
                 return s.label === "Thumbnail"
             });
 
-            // tslint:disable-next-line:no-console
-            console.log(lastSize, thumbSize);
-
             return {
                 addedDate: moment(photo.dates.taken).format('YYYY-MM-DD'),
                 authorName: photo.owner.realname,
@@ -52,10 +48,19 @@ export const getPicturesInfo = async (url: string) => {
             }
         }
     }
-    return {};
+    return  {
+        addedDate: "",
+        authorName: "",
+        height: 0,
+        thumbUrl: "",
+        title: "",
+        type: BookmarkTypeEnum.VIDEO,
+        url: "",
+        width: 0
+    };
 }
 
-export const getVideoInfo = async (url: string) => {
+export const getVideoInfo = async (url: string): Promise<IApiResult> => {
     const videoInfos = await fetchVimeo(url);
 
     if (videoInfos) {
@@ -73,6 +78,15 @@ export const getVideoInfo = async (url: string) => {
         }
     }
 
-    return {}
+    return  {
+        addedDate: "",
+        authorName: "",
+        height: 0,
+        thumbUrl: "",
+        title: "",
+        type: BookmarkTypeEnum.VIDEO,
+        url: "",
+        width: 0
+    }
 
 }

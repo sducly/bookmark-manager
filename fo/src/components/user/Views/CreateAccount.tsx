@@ -7,7 +7,7 @@ import { AddUser } from '../';
 import { User } from '../../../schema';
 import { Form } from '../../hoc';
 import Styles from '../../layout/styles';
-import { ComponentsPathEnum, redirect } from '../../workflow';
+import { ComponentsPathEnum } from '../../workflow';
 import { SaveToken } from '../selector';
 import { ICreateAccountProps } from '../types';
 import CreateAccountForm from './CreateAccountForm';
@@ -27,7 +27,7 @@ class CreateAccount extends React.Component<ICreateAccountProps, {}> {
                     <Typography variant="title" gutterBottom={true}>
                         Create an account
                 </Typography>
-                    <Form mutation={AddUser} postSubmit={this.postSubmit}>
+                    <Form mutation={AddUser} postSubmit={this.postSubmit} redirectUrl={ComponentsPathEnum.HOME}>
                         {() => <CreateAccountForm classes={classes} />}
                     </Form>
                 </Paper>
@@ -37,8 +37,7 @@ class CreateAccount extends React.Component<ICreateAccountProps, {}> {
 
     private postSubmit(data: any) {
         const user: User = data.addUser;
-        SaveToken(user)
-        redirect(ComponentsPathEnum.HOME);
+        SaveToken(user);
     }
 }
 

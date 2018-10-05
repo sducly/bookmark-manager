@@ -1,9 +1,9 @@
 type Query {
-    bookmarks(limit: Int, page: Int, type: String, title: String): [Bookmark]
-    countBookmark(type: String, title: String): Int
+    bookmarks(limit: Int, page: Int, type: String, title: String, userId: Int): [Bookmark]
+    countBookmark(type: String, title: String, userId: Int): Int
     bookmark(id: Int): Bookmark
 }
 
 type Mutation {
-    updateBookmark(id: Int, type: String, url: String, title: String, authorName: String, addedDate: String, width: Int, height: Int, thumbUrl: String) : Bookmark
+    updateBookmark(id: Int, type: String, url: String, title: String, authorName: String, addedDate: String, width: Int, height: Int, thumbUrl: String, userId: Int) : Bookmark
 }

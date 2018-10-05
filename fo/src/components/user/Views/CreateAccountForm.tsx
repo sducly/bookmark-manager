@@ -7,21 +7,27 @@ import { ICreateAccountFormProps } from "../types";
 
 export default class CreateAccountForm extends React.Component<ICreateAccountFormProps, {}> {
     public render() {
-        const {classes} = this.props;
-        
+        const { classes } = this.props;
+
         return <React.Fragment>
             <Grid container={true} spacing={24}>
-                <InputWidget
-                    name="email"
-                    label="Email"
-                    type="email"/>
+                <Grid item={true} xs={12}>
+                    <InputWidget
+                        name="email"
+                        label="Email"
+                        type="email" />
+                </Grid>
                 <PasswordWidget />
-                <InputWidget
-                    name="firstName"
-                    label="FirstName"/>
-                <InputWidget
-                    name="lastName"
-                    label="LastName"/>
+                <Grid item={true} xs={12} sm={6}>
+                    <InputWidget
+                        name="firstName"
+                        label="FirstName" />
+                </Grid>
+                <Grid item={true} xs={12} sm={6}>
+                    <InputWidget
+                        name="lastName"
+                        label="LastName" />
+                </Grid>
             </Grid>
 
             <Button

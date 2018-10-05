@@ -22,13 +22,13 @@ export default class QueryComponent extends React.Component<IQueryProps, {}>  {
         }
 
         return <Query query={query} variables={variables}>
-            {({ loading, error, data, fetchMore }: any): any => {
+            {({ loading, error, data, fetchMore, client }: any): any => {
                 if (loading) { return <Loading /> };
                 if (error) { return <Error error={error} /> };
-
+                
                 if (children) {
                     return <React.Fragment>
-                        {children({ data, fetchMore })}
+                        {children({ data, fetchMore, client })}
                     </React.Fragment>
                 }
                 return [];

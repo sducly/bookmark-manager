@@ -12,6 +12,7 @@ import { IListViewProps } from '../types';
 import { Row } from './Row';
 
 class BookmarkList extends React.Component<IListViewProps, {}> {
+
     public render() {
         const { classes } = this.props;
         return <React.Fragment>
@@ -20,7 +21,9 @@ class BookmarkList extends React.Component<IListViewProps, {}> {
       </Typography>
             
             <div className={classes.tableContainer}>
-                <Table query={BookmarksQuery} limit={5} toolbar={BookmarkToolbar}>
+                <Table query={BookmarksQuery} limit={5} toolbar={BookmarkToolbar} key={"bookmark-datatable"} variables={{
+                    userId: this.props.user.id
+                }}>
                     {({ data }: IQueryResponse) => {
                         const { results } = data;
                         return <React.Fragment>
