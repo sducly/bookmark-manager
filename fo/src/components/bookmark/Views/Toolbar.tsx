@@ -1,13 +1,16 @@
 import { Button, Grid, withStyles } from "@material-ui/core";
 import SaveIcon from '@material-ui/icons/Save';
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { generatePath, Link } from "react-router-dom";
 import { InputWidget, SelectWidget } from "../../hoc";
 import Styles from "../../layout/styles";
 import { ComponentsPathEnum } from "../../workflow";
 
 const AddLink = (props: {}) => {
-    return <Link to={ComponentsPathEnum.BOOKMARK_FORM} {...props} />
+    const url = generatePath(ComponentsPathEnum.BOOKMARK_FORM, {
+        id: 0
+    });
+    return <Link to={url} {...props} />
 }
 
 class BookmarkToolbar extends React.Component<any, {}> {
@@ -22,7 +25,7 @@ class BookmarkToolbar extends React.Component<any, {}> {
             direction="row"
             justify="flex-end">
             <Grid item={true} xs={12} sm={3}>
-                <InputWidget colSize={3} name="title" label="Titre" />
+                <InputWidget name="title" label="Titre" />
             </Grid>
 
             <Grid item={true} xs={12} sm={3}>

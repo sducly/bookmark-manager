@@ -5,3 +5,5 @@ import Video from "./entity/Video";
 
 export const Client = ApolloClient;
 export {Bookmark, User, Video};
+
+export * from "./types";

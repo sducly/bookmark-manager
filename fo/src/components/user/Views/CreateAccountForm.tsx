@@ -14,17 +14,14 @@ export default class CreateAccountForm extends React.Component<ICreateAccountFor
                 <InputWidget
                     name="email"
                     label="Email"
-                    type="email"
-                    colSize={12} />
+                    type="email"/>
                 <PasswordWidget />
                 <InputWidget
                     name="firstName"
-                    label="FirstName"
-                    colSize={6} />
+                    label="FirstName"/>
                 <InputWidget
                     name="lastName"
-                    label="LastName"
-                    colSize={6} />
+                    label="LastName"/>
             </Grid>
 
             <Button

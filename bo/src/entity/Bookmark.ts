@@ -29,6 +29,9 @@ export class Bookmark {
   @Column()
   height: number
 
+  @Column()
+  thumbUrl: String
+
   @OneToOne(type => Video)
   @JoinColumn()
   video: Video|null

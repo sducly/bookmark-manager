@@ -7,4 +7,5 @@ export  const BookmarkForm = BookmarkFormView;
 export  const BookmarkToolbar = BookmarkToolbarView;
 
 export * from "./queries";
-export * from "./types"
+export * from "./types";
+export * from "./services";

@@ -4,9 +4,10 @@ type Bookmark {
     url: String
     title: String
     authorName: String
-    addedDate: String
+    addedDate: Date
     width: Int
     height: Int
+    thumbUrl: String
     video: Video
     user: User
 }

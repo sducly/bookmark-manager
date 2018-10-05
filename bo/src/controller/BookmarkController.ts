@@ -43,7 +43,7 @@ export class BookmarkController {
 
   // serves "BookmarkGet(id: Int): Bookmark" requests
   @Query()
-  getBookmark({id}) {
+  bookmark({id}) {
     return this.entityManager.findOne(Bookmark, id);
   }
 

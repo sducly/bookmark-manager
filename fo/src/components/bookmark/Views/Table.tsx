@@ -27,6 +27,7 @@ class BookmarkList extends React.Component<IListViewProps, {}> {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>#</TableCell>
+                                    <TableCell>Thumb</TableCell>
                                     <TableCell>Title</TableCell>
                                     <TableCell>Author</TableCell>
                                     <TableCell>Add date</TableCell>

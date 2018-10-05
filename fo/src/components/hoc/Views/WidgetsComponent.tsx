@@ -40,6 +40,14 @@ export const InputWidget = ({ name, label, type = "text", required = true, onCha
         />;
 }
 
+export const HiddenWidget = ({name, value}: {name: string, value: string}) => {
+    return <input
+        type="hidden"
+        value={value}
+        name={name}
+    />
+}
+
 class Password extends React.Component<{}, IPasswordState> {
 
     constructor(props: {}) {
@@ -57,14 +65,12 @@ class Password extends React.Component<{}, IPasswordState> {
         const hasError = (password && confirmation && (password !== confirmation)) ? true : false;
         return <React.Fragment>
             <InputWidget
-                colSize={6}
                 name="password"
                 label="Password"
                 type="password"
                 onChange={this._onChange} />
             <InputWidget
                 error={hasError}
-                colSize={6}
                 name="confirmation"
                 label="Confirmation"
                 type="password"

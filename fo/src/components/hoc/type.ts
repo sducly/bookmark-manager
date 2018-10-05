@@ -39,13 +39,12 @@ export interface ITableProps extends IQueryProps {
 
 export interface IInputProps {
     error?: boolean,
-    defaultValue?: string,
+    defaultValue?: string | number,
     onChange?: (T: any) => void
     type?: "text" | "password" | "hidden" | "email",
     name: string,
     label: string,
-    required?: boolean,
-    colSize: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+    required?: boolean
 }
 
 export interface IPasswordState {
