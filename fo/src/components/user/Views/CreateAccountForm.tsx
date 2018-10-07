@@ -28,14 +28,14 @@ export default class CreateAccountForm extends React.Component<ICreateAccountFor
                 <Grid item={true} xs={12} sm={6}>
                     <InputWidget
                         name="firstName"
-                        label="FirstName"
+                        label="Firstname"
                         defaultValue={user.firstName}/>
                 </Grid>
 
                 <Grid item={true} xs={12} sm={6}>
                     <InputWidget
                         name="lastName"
-                        label="LastName"
+                        label="Lastname"
                         defaultValue={user.lastName}/>
                 </Grid>
             </Grid>
