@@ -2,6 +2,8 @@ import { Controller, Mutation, Query } from 'vesper';
 import { EntityManager } from 'typeorm';
 import { Bookmark } from '../entity/Bookmark';
 import { User } from '../entity/User';
+import { Video } from '../entity/Video';
+import { visit } from 'graphql';
 
 @Controller()
 export class BookmarkController {
@@ -52,10 +54,17 @@ export class BookmarkController {
   @Mutation()
   async updateBookmark(args) {
     const bookmark = this.entityManager.create(Bookmark, args);
+  console.log(bookmark.type);
+    if(bookmark.type === "video") {
+      const {duration} = args;
+      console.log(duration, bookmark.video);
+        if(!bookmark.video) {
+          bookmark.video = new Video();
+        } 
+        bookmark.video.duration = duration
+    }
 
     const {userId} = args;
-
-    console.log("userId", userId, args);
     if(userId) {
       const user = await this.entityManager.findOne(User, userId);
       bookmark.user = user;

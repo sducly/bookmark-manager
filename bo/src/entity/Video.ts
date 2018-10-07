@@ -9,8 +9,4 @@ export class Video {
 
   @Column()
   duration: number;
-
-  @OneToOne(type => Bookmark)
-  @JoinColumn()
-  bookmark: Bookmark
 }

@@ -10,4 +10,5 @@ type Bookmark {
     thumbUrl: String
     video: Video
     user: User
+    tags: String
 }

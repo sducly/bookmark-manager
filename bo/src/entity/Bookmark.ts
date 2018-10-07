@@ -32,7 +32,10 @@ export class Bookmark {
   @Column()
   thumbUrl: String
 
-  @OneToOne(type => Video)
+  @Column({ length: 300, nullable: true })
+  tags: String
+
+  @OneToOne(type => Video, { cascade: ["insert"] })
   @JoinColumn()
   video: Video|null
 

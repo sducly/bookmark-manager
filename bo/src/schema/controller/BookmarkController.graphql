@@ -5,5 +5,5 @@ type Query {
 }
 
 type Mutation {
-    updateBookmark(id: Int, type: String, url: String, title: String, authorName: String, addedDate: String, width: Int, height: Int, thumbUrl: String, userId: Int) : Bookmark
+    updateBookmark(id: Int, type: String, url: String, title: String, authorName: String, addedDate: String, width: Int, height: Int, thumbUrl: String, userId: Int, duration: Int, tags: String) : Bookmark
 }

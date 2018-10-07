@@ -27,6 +27,9 @@ export interface IApiResult {
         title: string,
         type: BookmarkTypeEnum|null,
         url: string,
+        tags: string,
         width: number,
-        duration?: number
+        video?: {
+            duration: number
+        }
 }

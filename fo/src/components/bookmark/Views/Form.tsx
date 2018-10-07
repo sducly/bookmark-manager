@@ -4,11 +4,13 @@ import { Button, Grid, Paper, TextField } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { IBookmarkFormProps } from "../";
 import { Bookmark } from "../../../schema";
-import { Form, HiddenWidget, InputWidget } from "../../hoc";
+import { Form, HiddenWidget, InputWidget, TagsWidget } from "../../hoc";
 import { ComponentsPathEnum } from "../../workflow";
 import { BookmarkQuery, UpdateBookmark } from "../queries";
 import { getPicturesInfo, getVideoInfo } from "../services";
 import { IApiResult } from "../types";
+import { VideoForm } from "./Includes/VideoForm";
+
 
 export default class BookmarkForm extends React.Component<IBookmarkFormProps, { redirectUrl: null | string, apiResult: IApiResult, initialize: boolean }> {
     constructor(props: IBookmarkFormProps) {
@@ -21,6 +23,7 @@ export default class BookmarkForm extends React.Component<IBookmarkFormProps, { 
                 authorName: "",
                 height: 0,
                 id: this.props.match.id,
+                tags: "",
                 thumbUrl: "",
                 title: "",
                 type: null,
@@ -86,8 +89,12 @@ export default class BookmarkForm extends React.Component<IBookmarkFormProps, { 
                             <Grid item={true} xs={12} sm={6}>
                                 <InputWidget name="height" defaultValue={MergeBookmark.height} label="Height" key={this.state.apiResult.height} />
                             </Grid>
+                            <VideoForm bookmark={MergeBookmark} key={this.state.apiResult.video ? this.state.apiResult.video.duration: "form-duration"}/>
                             <Grid item={true} xs={12}>
-                                <img src={MergeBookmark.thumbUrl} />
+                                <TagsWidget name={"tags"} label={"Tags"} defaultValue={MergeBookmark.tags} key={this.state.apiResult.tags}/>
+                            </Grid>
+                            <Grid item={true} xs={12}>
+                                <img src={MergeBookmark.thumbUrl} width="100%"/>
                             </Grid>
                             <Grid item={true} xs={12}>
                                 <Button
@@ -100,6 +107,8 @@ export default class BookmarkForm extends React.Component<IBookmarkFormProps, { 
                             </Grid>
                         </Grid>
                     </Paper>
+
+
                     <HiddenWidget name="thumbUrl" value={MergeBookmark.thumbUrl} />
                     <HiddenWidget name="id" value={(MergeBookmark.id) ? MergeBookmark.id : 0} />
                     <HiddenWidget name="type" value={MergeBookmark.type} />

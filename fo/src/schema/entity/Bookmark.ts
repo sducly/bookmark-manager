@@ -13,4 +13,5 @@ export default class Bookmark {
   public video: Video
   public user: User|null
   public thumbUrl: string
+  public tags: string
 }

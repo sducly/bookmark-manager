@@ -20,6 +20,18 @@ const fetchVimeo = async (url: string) => {
     return (result.status === 200) ? result.json() : null;
 }
 
+const fetchVimeoAuth = async (endpoint: string, videoId: string) => {
+    const result = await fetch('https://api.vimeo.com/videos/' + videoId + '/'+endpoint, {
+        headers: new Headers({
+            'Authorization': 'basic ' + btoa(process.env.REACT_APP_VIMEO_IDENTIFIER + ":" + process.env.REACT_APP_VIMEO_SECRET),
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }),
+        method: 'get'
+    });
+
+    return (result.status === 200) ? result.json() : null;
+}
+
 export const getPicturesInfo = async (url: string): Promise<IApiResult> => {
     const photoID = getPhotoID(url);
     if (photoID) {
@@ -30,28 +42,31 @@ export const getPicturesInfo = async (url: string): Promise<IApiResult> => {
         const { sizes } = photoSizes;
 
         if (photo && sizes) {
-
             const lastSize = sizes.size.slice(-1)[0];
             const thumbSize = sizes.size.find((s: any) => {
-                return s.label === "Thumbnail"
+                return s.label === "Medium"
             });
 
+            const tags = photo.tags.tag.map((t: any) => t.raw);
             return {
                 addedDate: moment(photo.dates.taken).format('YYYY-MM-DD'),
                 authorName: photo.owner.realname,
                 height: lastSize.height,
+                tags: tags.join(),
                 thumbUrl: thumbSize.source,
                 title: photo.title._content,
                 type: BookmarkTypeEnum.PICTURE,
                 url,
-                width: lastSize.width
+                width: lastSize.width,
+
             }
         }
     }
-    return  {
+    return {
         addedDate: "",
         authorName: "",
         height: 0,
+        tags: "",
         thumbUrl: "",
         title: "",
         type: BookmarkTypeEnum.VIDEO,
@@ -64,24 +79,30 @@ export const getVideoInfo = async (url: string): Promise<IApiResult> => {
     const videoInfos = await fetchVimeo(url);
 
     if (videoInfos) {
-        // tslint:disable-next-line:no-console
-        console.log(videoInfos);
+        const tagsResult:any = await fetchVimeoAuth("tags", videoInfos.video_id);
+        const tags = tagsResult.data.map((t: any) => t.name);
+
         return {
             addedDate: moment(videoInfos.upload_date).format('YYYY-MM-DD'),
             authorName: videoInfos.author_name,
             height: videoInfos.height,
+            tags: tags.join(),
             thumbUrl: videoInfos.thumbnail_url,
             title: videoInfos.title,
             type: BookmarkTypeEnum.VIDEO,
             url,
+            video: {
+                duration: videoInfos.duration
+            },
             width: videoInfos.width
         }
     }
 
-    return  {
+    return {
         addedDate: "",
         authorName: "",
         height: 0,
+        tags: "",
         thumbUrl: "",
         title: "",
         type: BookmarkTypeEnum.VIDEO,
