@@ -5,7 +5,7 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import * as React from "react";
-import Styles from "../../layout/styles";
+import Styles from "../../../components/layout/styles";
 
 interface IPaginationProps {
   classes: any,

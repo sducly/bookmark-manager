@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import { InputWidget, PasswordWidget } from '../../hoc';
+import { InputWidget, PasswordWidget } from '../../../libs/widgets';
 import { ICreateAccountFormProps } from "../types";
 
 export default class CreateAccountForm extends React.Component<ICreateAccountFormProps, {}> {

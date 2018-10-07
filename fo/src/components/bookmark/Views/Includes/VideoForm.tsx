@@ -1,7 +1,7 @@
 import { Grid } from "@material-ui/core";
 import * as React from "react";
+import { InputWidget }  from "../../../../libs/widgets";
 import { Bookmark, BookmarkTypeEnum } from "../../../../schema";
-import { InputWidget } from "../../../hoc";
 
 export const VideoForm = ({bookmark}: {bookmark: Bookmark}) => {
     if(bookmark.type === BookmarkTypeEnum.VIDEO) {

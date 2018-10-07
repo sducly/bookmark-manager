@@ -7,4 +7,3 @@ export const Query = QueryView;
 export const Table = TableComponentView;
 
 export * from "./type";
-export * from "./Views/WidgetsComponent";

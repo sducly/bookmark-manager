@@ -1,5 +1,5 @@
 import ErrorView from "./Views/Error";
-import HeaderView from "./Views/Header";
+import HeaderView from "./Views/Includes/Header";
 import LayoutView from "./Views/Layout";
 import LoadingView from "./Views/Loading";
 
@@ -10,4 +10,4 @@ export const Layout = LayoutView;
 
 export * from "./styles";
 export * from "./types";
-export * from "./Views/Items";
+export * from "./Views/Includes/Items";

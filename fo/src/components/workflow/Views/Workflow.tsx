@@ -1,12 +1,10 @@
 import * as React from "react";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { ComponentsPathEnum, IWorkflowState } from "../";
-import { BookmarkForm, BookmarkTable } from "../../bookmark";
-import { Layout } from "../../layout";
-import { Signin } from "../../signin";
-import { CreateAccount, GetUser } from "../../user";
-import NotFound from "./NotFound";
+import { IWorkflowState } from "../";
+import Loading from "../../layout/Views/Loading";
+import { GetUser } from "../../user";
+import { PrivatesRoutes } from "./Includes/PrivateRoutes";
+import { PublicRoutes } from "./Includes/PublicRoutes";
 
 export default class Workflow extends React.Component<{}, IWorkflowState> {
 
@@ -24,31 +22,14 @@ export default class Workflow extends React.Component<{}, IWorkflowState> {
 
         const { user } = this.state;
         if (user === undefined) {
-            return <React.Fragment />
+            return <Loading/>
         }
 
         if (user) {
-            // private components
-            return <Router>
-                <Layout user={user}>
-                    <Switch>
-                        <Route exact={true} path={ComponentsPathEnum.HOME} render={(props) => <BookmarkTable {...props} user={user}/>} />
-                        <Route exact={true} path={ComponentsPathEnum.BOOKMARK_FORM} render={(props) => <BookmarkForm {...props} user={user}/>} />
-                        <Route component={NotFound} />
-                    </Switch>
-                </Layout>
-            </Router>
-
+            return <PrivatesRoutes user={user}/>
         }
 
-        // public composant
-        return <Router>
-            <Switch>
-                <Route exact={true} path={ComponentsPathEnum.SIGNIN} component={Signin} />
-                <Route exact={true} path={ComponentsPathEnum.CREATE_ACCOUNT} component={CreateAccount} />
-                <Route component={NotFound} />
-            </Switch>
-        </Router>
+        return <PublicRoutes/>
     }
 
     private async getUser() {

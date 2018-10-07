@@ -8,7 +8,7 @@ import BookmarkIcon from '@material-ui/icons/Bookmark';
 import { ApolloClient } from 'apollo-boost';
 import { ApolloConsumer } from 'react-apollo';
 import { Link } from 'react-router-dom';
-import { ComponentsPathEnumType } from '../../workflow/types';
+import { ComponentsPathEnumType } from '../../../workflow/types';
 
 export const mainListItems = (
   <div>

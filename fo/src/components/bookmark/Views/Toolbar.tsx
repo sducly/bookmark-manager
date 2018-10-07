@@ -2,7 +2,7 @@ import { Button, Grid, withStyles } from "@material-ui/core";
 import SaveIcon from '@material-ui/icons/Save';
 import * as React from "react";
 import { generatePath, Link } from "react-router-dom";
-import { InputWidget, SelectWidget } from "../../hoc";
+import { InputWidget, SelectWidget } from "../../../libs/widgets";
 import Styles from "../../layout/styles";
 import { ComponentsPathEnum } from "../../workflow";
 

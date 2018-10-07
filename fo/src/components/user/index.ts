@@ -6,4 +6,4 @@ export const CreateAccountForm = CreateAccountFormView;
 
 export * from './queries';
 export * from './types';
-export * from './selector';
+export * from './services';

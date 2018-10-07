@@ -3,8 +3,8 @@ import { Query } from "react-apollo";
 
 import { IQueryProps } from "../";
 
-import { Error } from "../../layout";
-import { Loading } from "../../layout";
+import { Error } from "../../../components/layout";
+import { Loading } from "../../../components/layout";
 
 
 export default class QueryComponent extends React.Component<IQueryProps, {}>  {

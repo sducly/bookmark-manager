@@ -4,11 +4,11 @@ import { withStyles } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { AddUser } from '../';
+import { Form } from '../../../libs/hoc';
 import { User } from '../../../schema';
-import { Form } from '../../hoc';
 import Styles from '../../layout/styles';
 import { ComponentsPathEnum } from '../../workflow';
-import { SaveToken } from '../selector';
+import { SaveToken } from '../services';
 import { ICreateAccountProps } from '../types';
 import CreateAccountForm from './CreateAccountForm';
 

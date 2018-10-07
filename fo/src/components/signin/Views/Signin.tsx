@@ -6,7 +6,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import LockIcon from '@material-ui/icons/LockOutlined';
 import { ISigninProps, SigninForm } from '..';
-import { Form } from '../../hoc';
+import { Form } from '../../../libs/hoc';
 import Styles from '../../layout/styles';
 import { AuthenticateUser } from '../../user';
 import { ComponentsPathEnum, redirect } from '../../workflow';

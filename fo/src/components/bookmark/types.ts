@@ -1,7 +1,7 @@
 import { WithStyles } from "@material-ui/core";
 import { match } from "react-router";
+import { IFetchMoreProps } from "../../libs/hoc";
 import { Bookmark, BookmarkTypeEnum, User } from "../../schema";
-import { IFetchMoreProps } from "../hoc";
 
 export interface IListViewProps extends IFetchMoreProps, WithStyles<any> {
     user: any
