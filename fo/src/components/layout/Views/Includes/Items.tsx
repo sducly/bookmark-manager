@@ -11,10 +11,10 @@ import { Link } from 'react-router-dom';
 import { ComponentsPathEnumType } from '../../../workflow/types';
 
 export const mainListItems = (
-  <div>
-    <ApolloConsumer>
-      {(client: ApolloClient<any>) => (
-        <Link to={ComponentsPathEnumType.HOME} onClick={() => {client.resetStore()}}>
+  <ApolloConsumer>
+    {(client: ApolloClient<any>) => (
+      <React.Fragment>
+        <Link to={ComponentsPathEnumType.HOME} onClick={() => { client.resetStore() }}>
           <ListItem button={true}>
             <ListItemIcon>
               <BookmarkIcon />
@@ -22,13 +22,16 @@ export const mainListItems = (
             <ListItemText primary="Bookmarks" />
           </ListItem>
         </Link>
-      )}
-    </ApolloConsumer>
-    <ListItem button={true}>
-      <ListItemIcon>
-        <AccountIcon />
-      </ListItemIcon>
-      <ListItemText primary="Profil" />
-    </ListItem>
-  </div>
+
+        <Link to={ComponentsPathEnumType.UPDATE_ACCOUNT} onClick={() => { client.resetStore() }}>
+          <ListItem button={true}>
+            <ListItemIcon>
+              <AccountIcon />
+            </ListItemIcon>
+            <ListItemText primary="Profil" />
+          </ListItem>
+        </Link>
+      </React.Fragment>
+    )}
+  </ApolloConsumer>
 );

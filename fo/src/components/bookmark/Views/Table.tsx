@@ -24,7 +24,7 @@ class BookmarkList extends React.Component<IListViewProps, {}> {
                 <Table query={BookmarksQuery} limit={5} toolbar={BookmarkToolbar} key={"bookmark-datatable"} variables={{
                     userId: this.props.user.id
                 }}>
-                    {({ data }: IQueryResponse) => {
+                    {({ data }: IQueryResponse, reload: any) => {
                         const { results } = data;
                         return <React.Fragment>
                             <TableHead>
@@ -34,12 +34,12 @@ class BookmarkList extends React.Component<IListViewProps, {}> {
                                     <TableCell>Title</TableCell>
                                     <TableCell>Author</TableCell>
                                     <TableCell>Add date</TableCell>
-                                    <TableCell />
+                                    <TableCell/>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {results.map((b: Bookmark) => {
-                                    return <Row bookmark={b} key={'boomark_row_' + b.id} />
+                                    return <Row bookmark={b} key={'boomark_row_' + b.id} reload={reload}/>
                                 })}
                             </TableBody>
                         </React.Fragment>

@@ -1,7 +1,7 @@
 import { Bookmark } from "../";
 
 export default  class User {
-  public id: string;
+  public id: number = 0;
   public firstName: string;
   public lastName: string;
   public password: string;

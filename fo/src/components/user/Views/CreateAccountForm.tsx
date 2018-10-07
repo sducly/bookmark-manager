@@ -2,12 +2,15 @@ import * as React from "react";
 
 import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import { InputWidget, PasswordWidget } from '../../../libs/widgets';
+import { HiddenWidget, InputWidget, PasswordWidget } from '../../../libs/widgets';
+import { User } from "../../../schema";
 import { ICreateAccountFormProps } from "../types";
 
 export default class CreateAccountForm extends React.Component<ICreateAccountFormProps, {}> {
     public render() {
         const { classes } = this.props;
+
+        const user = (this.props.user) ? this.props.user: new User();
 
         return <React.Fragment>
             <Grid container={true} spacing={24}>
@@ -16,24 +19,28 @@ export default class CreateAccountForm extends React.Component<ICreateAccountFor
                     <InputWidget
                         name="email"
                         label="Email"
-                        type="email"/>
+                        type="email"
+                        defaultValue={user.email}/>
                 </Grid>
 
-                <PasswordWidget />
+                <PasswordWidget required={false} defaultValue={user.password}/>
 
                 <Grid item={true} xs={12} sm={6}>
                     <InputWidget
                         name="firstName"
-                        label="FirstName"/>
+                        label="FirstName"
+                        defaultValue={user.firstName}/>
                 </Grid>
 
                 <Grid item={true} xs={12} sm={6}>
                     <InputWidget
                         name="lastName"
-                        label="LastName"/>
+                        label="LastName"
+                        defaultValue={user.lastName}/>
                 </Grid>
-
             </Grid>
+
+            <HiddenWidget name="id" value={user.id}/>
 
             <Button
                 type="submit"
@@ -41,7 +48,7 @@ export default class CreateAccountForm extends React.Component<ICreateAccountFor
                 variant="raised"
                 color="primary"
                 className={classes.submit}>
-                Sign in
+                {(user.id) ? "OK" : "Sign in"}
             </Button>
             
         </React.Fragment>

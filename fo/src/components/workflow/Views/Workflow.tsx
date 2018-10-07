@@ -15,6 +15,7 @@ export default class Workflow extends React.Component<{}, IWorkflowState> {
             user: undefined
         }
 
+        this.getUser = this.getUser.bind(this);
         this.getUser();
     }
 
@@ -26,7 +27,7 @@ export default class Workflow extends React.Component<{}, IWorkflowState> {
         }
 
         if (user) {
-            return <PrivatesRoutes user={user}/>
+            return <PrivatesRoutes user={user} getUser={this.getUser}/>
         }
 
         return <PublicRoutes/>

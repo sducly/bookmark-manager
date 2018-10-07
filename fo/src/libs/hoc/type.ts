@@ -8,7 +8,7 @@ export interface IFetchMoreProps {
 export interface IQueryProps {
     query?: DocumentNode,
     variables?: any,
-    children: (T:any) => {}
+    children: (T:any, F?: any) => {}
 }
 
 export interface IQueryResponse extends IFetchMoreProps {
@@ -37,4 +37,18 @@ export interface ITableResponse extends IQueryResponse, IFetchMoreProps{
 export interface ITableProps extends IQueryProps {
     limit: number,
     toolbar?: any
+}
+
+export interface IDialogProps {
+    title: string,
+    content: string,
+    onConfirm: (T?: {}) => Promise<boolean>,
+    children?: (T:any) => void,
+    confirmParams: {},
+    redirectUrl?: string
+}
+
+export interface IDialogState {
+    open: boolean,
+    redirectUrl?: string
 }

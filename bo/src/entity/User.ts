@@ -1,6 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Bookmark } from './Bookmark';
-import * as crypto from "crypto";
 
 @Entity()
 export class User {
@@ -18,7 +17,7 @@ export class User {
   email: string;
 
   @Column()
-  salt: string = this.generateToken()
+  salt: string;
 
   @Column()
   password: string;
@@ -27,9 +26,5 @@ export class User {
   bookmarks: Bookmark[];
 
   @Column()
-  token: string = this.generateToken()
-
-  private generateToken(): string {
-    return crypto.randomBytes(32).toString("base64");
-  }
+  token: string;
 }

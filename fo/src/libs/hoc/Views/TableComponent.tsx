@@ -16,9 +16,12 @@ export default class TableComponent extends React.Component<ITableProps, {toolba
     super(props);
     this.handleChangePage = this.handleChangePage.bind(this);
     this.handleToolbarChange = this.handleToolbarChange.bind(this);
+    this.reload = this.reload.bind(this);
+
     this.state = {
       toolbarData: {}
     }
+
   }
 
   public render() {
@@ -27,11 +30,10 @@ export default class TableComponent extends React.Component<ITableProps, {toolba
       {({ data, fetchMore }: IQueryResponse): any => {
         const children: any = this.props.children;
         this.fetch = fetchMore;
-
         return <React.Fragment>
           {this.renderToolbar()}
           <Table>
-          {children({ data })}
+          {children({ data }, this.reload)}
           <TableFooter>
             <TableRow>
               <TablePagination
@@ -74,6 +76,10 @@ export default class TableComponent extends React.Component<ITableProps, {toolba
       toolbarData: data
     })
     this.handleChangePage(event, this.page);
+  }
+
+  private reload() {
+    this.handleChangePage(null, this.page);
   }
 
   private handleChangePage = (event: any, page: any) => {

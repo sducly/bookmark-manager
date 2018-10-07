@@ -2,9 +2,9 @@ type Query {
     users: [User]
     authenticateUser(email: String, password: String): User
     getUserByToken(token: String): User
+    user(id: Int): User
 }
 
 type Mutation {
-    addUser(firstName: String, lastName: String, email: String, password: String) : User
-    
+    updateUser(id: Int, firstName: String, lastName: String, email: String, password: String) : User
 }

@@ -14,3 +14,8 @@ export interface IPasswordState {
     password?: string,
     confirmation?: string
 }
+
+export interface IPasswordProps {
+    required: boolean,
+    defaultValue?: string | number,
+}

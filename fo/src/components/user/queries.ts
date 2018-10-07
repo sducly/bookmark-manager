@@ -1,6 +1,13 @@
 import gql from "graphql-tag";
 
-export const GetUserByToken = gql`
+export const UserQuery = gql`
+query User($id: Int) {
+  result: user(id: $id) {
+    id firstName lastName email password
+  }
+}`;
+
+export const GetUserByTokenQuery = gql`
 query GetUserByToken($token: String) {
   getUserByToken(token: $token) {
     id firstName lastName email token
@@ -14,9 +21,9 @@ query AuthenticateUser($email: String, $password: String) {
   }
 }`;
 
-export const AddUser = gql`
-mutation AddUser($firstName: String, $lastName: String, $email: String, $password: String) {
-    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
+export const UpdateUserQuery = gql`
+mutation UpdateUser($id: Int, $firstName: String, $lastName: String, $email: String, $password: String) {
+    updateUser(id: $id, firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
       id firstName lastName email token
   }
 }`;

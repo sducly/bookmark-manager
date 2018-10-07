@@ -20,5 +20,9 @@ mutation UpdateBookmark($id: Int, $type: String, $url: String, $title: String, $
   update: updateBookmark(id: $id, type: $type, url: $url, title: $title, authorName: $authorName, addedDate: $addedDate, width: $width, height: $height, thumbUrl: $thumbUrl, userId: $userId, duration: $duration, tags: $tags) {
     id type url title authorName addedDate width height thumbUrl
   }
-}
-`
+}`
+
+export const DeleteBookmark = gql`
+mutation DeleteBookmark($id: Int) {
+  delete: deleteBookmark(id: $id) 
+}`

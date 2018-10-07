@@ -3,18 +3,17 @@ import * as React from 'react';
 import { withStyles } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import { UpdateUserQuery } from '../';
+import { UpdateUserQuery } from '..';
 import { Form } from '../../../libs/hoc';
 import { User } from '../../../schema';
 import Styles from '../../layout/styles';
-import { ComponentsPathEnum } from '../../workflow';
-import { SaveToken } from '../services';
-import { ICreateAccountProps } from '../types';
+import { UserQuery } from '../queries';
+import { IUpdateAccountProps } from '../types';
 import CreateAccountForm from './CreateAccountForm';
 
-class CreateAccount extends React.Component<ICreateAccountProps, {}> {
+class UpdateAccount extends React.Component<IUpdateAccountProps, {}> {
 
-    constructor(props: ICreateAccountProps) {
+    constructor(props: IUpdateAccountProps) {
         super(props);
         this.postSubmit = this.postSubmit.bind(this);
     }
@@ -27,15 +26,20 @@ class CreateAccount extends React.Component<ICreateAccountProps, {}> {
                     <Typography
                         variant="title"
                         gutterBottom={true}>
-                        Create an account
+                        Update my account
                     </Typography>
 
                     <Form
+                        query={UserQuery}
+                        variables={{
+                            id: this.props.user.id
+                        }}
                         mutation={UpdateUserQuery}
-                        postSubmit={this.postSubmit}
-                        redirectUrl={ComponentsPathEnum.HOME}>
+                        postSubmit={this.postSubmit}>
 
-                        {() => <CreateAccountForm classes={classes} />}
+                        {(result: User) => {
+                            return <CreateAccountForm classes={classes} user={result}/>
+                    }}
 
                     </Form>
 
@@ -44,10 +48,9 @@ class CreateAccount extends React.Component<ICreateAccountProps, {}> {
         );
     }
 
-    private postSubmit(data: any) {
-        const user: User = data.updateUser;
-        SaveToken(user);
+    private async postSubmit() {
+        await this.props.getUser();
     }
 }
 
-export default withStyles(Styles as any)(CreateAccount);
+export default withStyles(Styles as any)(UpdateAccount);

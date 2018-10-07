@@ -13,6 +13,12 @@ export class UserController {
         return this.entityManager.find(User);
     }
 
+  @Query()
+  user({id}) {
+    return this.entityManager.findOne(User, id);
+  }
+
+
     @Query()
     getUserByToken({ token }) {
         return this
@@ -42,8 +48,26 @@ export class UserController {
     }
 
     @Mutation()
-    addUser(args) {
-        let user = this.entityManager.create(User, args);
+    async updateUser(args) {
+    
+        let user = new User();
+
+        if(args.id > 0) {
+            user = await this.entityManager.findOne(User, args.id);
+                user.firstName = args.firstName;
+                user.lastName = args.lastName;
+                user.email = args.email;
+                user.password = args.password;
+        } else {
+            user = this.entityManager.create(User, args);
+            user.token = crypto.randomBytes(32).toString("base64");
+            user.salt = crypto.randomBytes(32).toString("base64");
+        }
+
+        
+
         return this.entityManager.save(user);
+        
+        
     }
 }

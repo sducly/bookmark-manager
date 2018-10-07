@@ -1,11 +1,11 @@
 import { Grid } from "@material-ui/core";
 import * as React from "react";
 import { InputWidget } from "../index";
-import { IPasswordState } from "../types";
+import { IPasswordProps, IPasswordState } from "../types";
 
-export default class Password extends React.Component<{}, IPasswordState> {
+export default class Password extends React.Component<IPasswordProps, IPasswordState> {
 
-    constructor(props: {}) {
+    constructor(props: IPasswordProps) {
         super(props);
         this.state = {
             confirmation: undefined,
@@ -25,6 +25,8 @@ export default class Password extends React.Component<{}, IPasswordState> {
                     name="password"
                     label="Password"
                     type="password"
+                    defaultValue={this.props.defaultValue}
+                    required={this.props.required}
                     onChange={this._onChange} />
             </Grid>
 
@@ -34,6 +36,8 @@ export default class Password extends React.Component<{}, IPasswordState> {
                     name="confirmation"
                     label="Confirmation"
                     type="password"
+                    defaultValue={this.props.defaultValue}
+                    required={this.props.required}
                     onChange={this._onChange} />
             </Grid>
 

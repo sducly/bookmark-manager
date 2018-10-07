@@ -1,5 +1,5 @@
 import { Client, User } from '../../schema';
-import { AuthenticateUserQuery, GetUserByToken } from './queries';
+import { AuthenticateUserQuery, GetUserByTokenQuery } from './queries';
 
 const TOKEN_SESSION_NAME = "user_token";
 
@@ -33,7 +33,7 @@ export const GetUser = async () => {
     const token = GetToken();
     if (token) {
         const result: any = await Client.query({
-            query: GetUserByToken,
+            query: GetUserByTokenQuery,
             variables: {
                 token
             }
