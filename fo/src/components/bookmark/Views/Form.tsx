@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import { IBookmarkFormProps } from "../";
 import { Bookmark } from "../../../schema";
 import { Form, HiddenWidget, InputWidget, TagsWidget } from "../../hoc";
+import Loading from "../../layout/Views/Loading";
 import { ComponentsPathEnum } from "../../workflow";
 import { BookmarkQuery, UpdateBookmark } from "../queries";
 import { getPicturesInfo, getVideoInfo } from "../services";
@@ -12,7 +13,7 @@ import { IApiResult } from "../types";
 import { VideoForm } from "./Includes/VideoForm";
 
 
-export default class BookmarkForm extends React.Component<IBookmarkFormProps, { redirectUrl: null | string, apiResult: IApiResult, initialize: boolean }> {
+export default class BookmarkForm extends React.Component<IBookmarkFormProps, { redirectUrl: null | string, apiResult: IApiResult, isLoading: boolean }> {
     constructor(props: IBookmarkFormProps) {
         super(props);
         this.handleChangeUrl = this.handleChangeUrl.bind(this);
@@ -30,13 +31,18 @@ export default class BookmarkForm extends React.Component<IBookmarkFormProps, { 
                 url: "",
                 width: 0
             },
-            initialize: false,
+            isLoading: false,
             redirectUrl: null
         }
     }
 
     public render() {
         const urlParams = this.props.match.params as { id: number };
+        
+        if(this.state.isLoading) {
+            return <Loading/>
+        }
+
         return <Form query={BookmarkQuery} mutation={UpdateBookmark} variables={{ id: urlParams.id }} redirectUrl={ComponentsPathEnum.HOME}>
             {(result: Bookmark) => {
                 const bookmark = (result) ? result : new Bookmark();
@@ -62,7 +68,12 @@ export default class BookmarkForm extends React.Component<IBookmarkFormProps, { 
                         <Grid container={true} spacing={24} id="form-grid-container">
 
                             <Grid item={true} xs={12}>
-                                <InputWidget name="_tempUrl" defaultValue={MergeBookmark.url} label="Url" onChange={this.handleChangeUrl} />
+                                <InputWidget 
+                                name="_tempUrl" 
+                                defaultValue={MergeBookmark.url} 
+                                label="Url" 
+                                onChange={this.handleChangeUrl} 
+                                helpText={"Please paste a Flickr or Vimeo Url. Samples : https://www.flickr.com/photos/maxjunkyard/18149663983/in/feed | https://vimeo.com/176061168"}/>
                             </Grid>
                             <Grid item={true} xs={12}>
                                 <InputWidget name="title" defaultValue={MergeBookmark.title} label="Title" key={this.state.apiResult.title} />
@@ -120,6 +131,9 @@ export default class BookmarkForm extends React.Component<IBookmarkFormProps, { 
         </Form>;
     }
 
+    private isValidUrl(url: string) {
+        return (!url || url.match('www.flickr.com') || url.match('vimeo.com'));
+    }
     private getProvider(url: string) {
         return (url.match('flickr')) ? getPicturesInfo : getVideoInfo;
     }
@@ -128,15 +142,20 @@ export default class BookmarkForm extends React.Component<IBookmarkFormProps, { 
         const input = e.target;
         const url = input.value;
 
-        if (!url) {
+        if (!url || !this.isValidUrl(url)) {
             return;
         }
+
+        this.setState({
+            isLoading: true
+        });
 
         const apiData = this.getProvider(url);
         const data = await apiData(url);
 
         this.setState({
-            apiResult: data
+            apiResult: data,
+            isLoading: false
         })
     }
 }

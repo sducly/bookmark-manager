@@ -24,13 +24,14 @@ export const SelectWidget = ({ name, options, label, value = "", onChange }: { n
     </FormControl>
 }
 
-export const InputWidget = ({ name, label, type = "text", required = true, onChange, error = false, defaultValue }: IInputProps) => {
+export const InputWidget = ({ name, label, type = "text", required = true, onChange, error = false, defaultValue, helpText="" }: IInputProps) => {
     return <TextField
         defaultValue={defaultValue}
         error={error}
         onChange={onChange}
         required={required}
         type={type}
+        helperText={helpText}
         id={name}
         name={name}
         label={label}

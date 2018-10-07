@@ -40,6 +40,7 @@ export interface ITableProps extends IQueryProps {
 }
 
 export interface IInputProps {
+    helpText?: string,
     error?: boolean,
     defaultValue?: string | number,
     onChange?: (T: any) => void
