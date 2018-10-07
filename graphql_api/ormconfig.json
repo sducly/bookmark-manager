@@ -4,7 +4,7 @@
    "port": 3306,
    "username": "root",
    "password": "rootpwd",
-   "database": "todo_review",
+   "database": "bookmark_manager",
    "synchronize": true,
    "logging": "all",
    "entities": [

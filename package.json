@@ -5,11 +5,11 @@
   "author": "S. DUCLY",
   "license": "MIT",
   "scripts": {
-    "start": "yarn run start_bo | yarn run start_fo",
-    "install": "yarn run install_bo && yarn run install_fo",
-    "start_bo": "cd bo && yarn run start",
+    "start": "yarn run start_api | yarn run start_fo",
+    "install": "yarn run install_api && yarn run install_fo",
+    "start_api": "cd graphql_api && yarn run start",
     "start_fo": "cd fo && yarn run start",
-    "install_bo": "cd bo && yarn",
+    "install_api": "cd graphql_api && yarn",
     "install_fo": "cd fo && yarn"
   }
 }
