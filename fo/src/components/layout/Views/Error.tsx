@@ -1,24 +1,32 @@
+import { Paper, Typography } from "@material-ui/core";
 import * as React from "react";
 import { IErrorProps } from "../";
 
 export default class Error extends React.Component<IErrorProps, {}> {
     public render() {
-        const {error} = this.props;
+        const { error } = this.props;
 
-        if(error.networkError) {
-            setTimeout(this.refreshApp, 2000);
-            return <div>
-                <p>[Initialization]: BO is being deployed</p>
-                <p>Please wait, the page will refresh automatically</p>
+        return <Paper style={{
+            margin: "auto",
+            marginTop: 30,
+            maxWidth: 700,
+            padding: 20,
+            width: "calc(100%-40px)"
 
+        }}>
+            <Typography variant="title" gutterBottom={true}>
+                [Hum... Houston, we have a problem]
+            </Typography>
 
-            </div>;
-        }
+            {(error.networkError) ?
+                <div>
+                    <p>[Initialization]: BO is being deployed</p>
+                    <p>Please wait, the page will refresh automatically</p>
+                </div> :
+                <p>{error.name}: {error.message}</p>
+            }
+        </Paper>
 
-        return <p>Error: {error.message}</p>
     }
 
-    private refreshApp() {
-        // window.location.reload();
-    }
 }

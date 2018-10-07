@@ -24,12 +24,21 @@ class CreateAccount extends React.Component<ICreateAccountProps, {}> {
         return (
             <React.Fragment>
                 <Paper className={classes.paper}>
-                    <Typography variant="title" gutterBottom={true}>
+                    <Typography
+                        variant="title"
+                        gutterBottom={true}>
                         Create an account
-                </Typography>
-                    <Form mutation={AddUser} postSubmit={this.postSubmit} redirectUrl={ComponentsPathEnum.HOME}>
+                    </Typography>
+
+                    <Form
+                        mutation={AddUser}
+                        postSubmit={this.postSubmit}
+                        redirectUrl={ComponentsPathEnum.HOME}>
+
                         {() => <CreateAccountForm classes={classes} />}
+
                     </Form>
+
                 </Paper>
             </React.Fragment>
         );

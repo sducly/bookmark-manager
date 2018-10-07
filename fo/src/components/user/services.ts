@@ -1,6 +1,5 @@
 import { Client, User } from '../../schema';
-import { AuthenticateUserQuery } from './';
-import { GetUserByToken } from './queries';
+import { AuthenticateUserQuery, GetUserByToken } from './queries';
 
 const TOKEN_SESSION_NAME = "user_token";
 

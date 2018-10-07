@@ -17,24 +17,32 @@ class Signin extends React.Component<ISigninProps, {}> {
         super(props);
         this.authenticateUser = this.authenticateUser.bind(this);
     }
-    
-    public render()  {
+
+    public render() {
         const { classes } = this.props;
-        return <Paper className={classes.paper}>
-        <Avatar className={classes.avatar}>
-            <LockIcon />
-        </Avatar>
-        <Typography variant="headline">Sign in</Typography>
-        <Form submit={this.authenticateUser}>
-            {() => <SigninForm classes={classes} />}
-        </Form>
-    </Paper>
+        return (
+            <Paper className={classes.paper}>
+
+                <Avatar className={classes.avatar}>
+                    <LockIcon />
+                </Avatar>
+
+                <Typography variant="headline">
+                    Sign in
+                </Typography>
+
+                <Form submit={this.authenticateUser}>
+                    {() => <SigninForm classes={classes} />}
+                </Form>
+                
+            </Paper>
+        )
     }
 
     private async authenticateUser(e: any) {
         const user = await AuthenticateUser(e);
-        
-        if(user) {
+
+        if (user) {
             redirect(ComponentsPathEnum.HOME);
         }
     }

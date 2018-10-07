@@ -11,23 +11,28 @@ export default class CreateAccountForm extends React.Component<ICreateAccountFor
 
         return <React.Fragment>
             <Grid container={true} spacing={24}>
+
                 <Grid item={true} xs={12}>
                     <InputWidget
                         name="email"
                         label="Email"
-                        type="email" />
+                        type="email"/>
                 </Grid>
+
                 <PasswordWidget />
+
                 <Grid item={true} xs={12} sm={6}>
                     <InputWidget
                         name="firstName"
-                        label="FirstName" />
+                        label="FirstName"/>
                 </Grid>
+
                 <Grid item={true} xs={12} sm={6}>
                     <InputWidget
                         name="lastName"
-                        label="LastName" />
+                        label="LastName"/>
                 </Grid>
+
             </Grid>
 
             <Button
@@ -38,6 +43,7 @@ export default class CreateAccountForm extends React.Component<ICreateAccountFor
                 className={classes.submit}>
                 Sign in
             </Button>
+            
         </React.Fragment>
     }
 }
