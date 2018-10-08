@@ -30,8 +30,7 @@ yarn start
 ```
 
 ### 1ère utilisation
-A la première connexion, un formulaire de connexion s'affiche. Vous ne disposez pas encore de profil. 
-Pour créer un compte, cliquez sur le bouton "Create an account". Renseigner les éléments demandés dans le formulaire et cliquer sur suivant. Votre compte est automatiquement activé et vous pouvez vous connecter instantanément.
+Afin d'utiliser l'application vous devez créer un compte utilisateur. Pour cela, rendez vous [ici](http://localhost:3000/create-account). Le compte crée sera automatiquement validé et disponible.
 
 ### API Vimeo / Flickr
 L'application utilise les API Viméo et Flickr afin de récupérer les informations courantes du bookmark (titre, auteur, larguer / hauteur, tags,...).

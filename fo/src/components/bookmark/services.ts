@@ -47,7 +47,11 @@ export const getVideoInfo = async (url: string): Promise<IApiResult> => {
 
     if (videoInfos) {
         const tagsResult:any = await fetchVimeoAuth("tags", videoInfos.video_id);
-        const tags = tagsResult.data.map((t: any) => t.name);
+        let tags = [];
+        if(tagsResult) {
+            tags = tagsResult.data.map((t: any) => t.name);
+        }
+        
 
         return {
             addedDate: moment(videoInfos.upload_date).format('YYYY-MM-DD'),
