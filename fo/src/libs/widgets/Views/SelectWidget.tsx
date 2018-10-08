@@ -11,9 +11,7 @@ export default ({ name, options, label, value = "", onChange }: { name: string, 
         menuItems.push(<MenuItem value={i.value} key={"select_" + i.label + "_" + i.value}>{i.label}</MenuItem>);
     });
 
-    return <FormControl style={{
-        width: "100%"
-    }}>
+    return <FormControl fullWidth={true}>
         <InputLabel htmlFor={name}>
             {label}
         </InputLabel>

@@ -7,7 +7,7 @@ export interface IListViewProps extends IFetchMoreProps, WithStyles<any> {
     user: any
 }
 
-export interface IBookmarkFormProps {
+export interface IBookmarkFormProps extends WithStyles<any> {
     match: match|any,
     user: User
 }

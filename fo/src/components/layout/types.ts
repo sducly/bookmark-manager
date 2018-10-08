@@ -3,7 +3,8 @@ import { ApolloError } from "apollo-boost";
 import { User } from "../../schema";
 
 
-export interface IErrorProps {
+
+export interface IErrorProps extends WithStyles<any>{
     error: ApolloError
 }
 

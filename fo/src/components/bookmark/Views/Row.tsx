@@ -39,9 +39,7 @@ export const Row = ({ bookmark, reload }: { bookmark: Bookmark, reload: () => vo
         
         <TableCell>{bookmark.id}</TableCell>
         <TableCell>
-            <img src={bookmark.thumbUrl} style={{
-                width: "80px"
-            }} />
+            <img src={bookmark.thumbUrl} width={80}/>
         </TableCell>
         <TableCell>{bookmark.title}</TableCell>
         <TableCell>{bookmark.authorName}</TableCell>

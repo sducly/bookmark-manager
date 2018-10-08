@@ -1,11 +1,12 @@
 import * as React from "react";
 
-import { Button, Grid, Paper } from '@material-ui/core';
+import { Button, Grid, Paper, withStyles } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { IBookmarkFormProps } from "../";
 import { Form } from "../../../libs/hoc";
 import { HiddenWidget, InputWidget } from "../../../libs/widgets";
 import { Bookmark } from "../../../schema";
+import Styles from "../../layout/styles";
 import Loading from "../../layout/Views/Loading";
 import { ComponentsPathEnum } from "../../workflow";
 import { BookmarkQuery, UpdateBookmark } from "../queries";
@@ -14,7 +15,7 @@ import { IApiResult } from "../types";
 import { BookmarkForm } from "./Includes/BookmarkForm";
 import { VideoForm } from "./Includes/VideoForm";
 
-export default class BookmarkFormView extends React.Component<IBookmarkFormProps, { redirectUrl: null | string, apiResult: IApiResult, isLoading: boolean }> {
+class BookmarkFormView extends React.Component<IBookmarkFormProps, { redirectUrl: null | string, apiResult: IApiResult, isLoading: boolean }> {
     constructor(props: IBookmarkFormProps) {
         super(props);
         this.handleChangeUrl = this.handleChangeUrl.bind(this);
@@ -38,6 +39,7 @@ export default class BookmarkFormView extends React.Component<IBookmarkFormProps
     }
 
     public render() {
+        const {classes} = this.props;
         const urlParams = this.props.match.params as { id: number };
 
         if (this.state.isLoading) {
@@ -59,14 +61,7 @@ export default class BookmarkFormView extends React.Component<IBookmarkFormProps
                     <Typography variant="title" gutterBottom={true}>
                         {MergeBookmark.id > 0 ? "Edit Bookmark" : "Add Bookmark"}
                     </Typography>
-                    <Paper style={{
-                        margin: "auto",
-                        marginTop: 30,
-                        maxWidth: 700,
-                        padding: 20,
-                        width: "calc(100%-40px)"
-
-                    }}>
+                    <Paper className={classes.paperContainer}>
                         <Grid container={true} spacing={24} id="form-grid-container">
 
                             {/* Fake url use to fetch data from api */}
@@ -149,3 +144,5 @@ export default class BookmarkFormView extends React.Component<IBookmarkFormProps
         })
     }
 }
+
+export default withStyles(Styles as any)(BookmarkFormView)

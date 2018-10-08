@@ -1,21 +1,17 @@
-import { LinearProgress, Paper, Typography } from "@material-ui/core";
+import { LinearProgress, Paper, Typography, withStyles, WithStyles } from "@material-ui/core";
 import * as React from "react";
+import Styles from "../styles";
 
 /**
  * Loading Screen
  */
-export default class Loading extends React.Component {
+class Loading extends React.Component<WithStyles<any>, {}> {
     public render() {
+        const {classes} = this.props;
+
         return <React.Fragment>
             <LinearProgress />
-            <Paper style={{
-                margin: "auto",
-                marginTop: 30,
-                maxWidth: 700,
-                padding: 20,
-                width: "calc(100%-40px)"
-
-            }}>
+            <Paper className={classes.paperContainer}>
                 <Typography variant="title" gutterBottom={true}>
                     [Loading...]
                     </Typography>
@@ -24,3 +20,5 @@ export default class Loading extends React.Component {
         </React.Fragment>
     }
 }
+
+export default withStyles(Styles as any)(Loading);

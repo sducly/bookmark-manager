@@ -91,6 +91,14 @@ const AppStyle = (theme: Theme) => {
       maxWidth: 400,
       padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
     },
+    paperContainer: {
+      margin: "auto",
+      marginTop: 30,
+      maxWidth: 700,
+      padding: 20,
+      width: "calc(100%-40px)"
+
+  },
     root: {
       display: 'flex',
     },

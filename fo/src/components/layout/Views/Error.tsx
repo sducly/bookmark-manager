@@ -1,22 +1,17 @@
-import { Paper, Typography } from "@material-ui/core";
+import { Paper, Typography, withStyles } from "@material-ui/core";
 import * as React from "react";
 import { IErrorProps } from "../";
+import Styles from "../styles";
 
 /**
  * Error Screen
  */
-export default class Error extends React.Component<IErrorProps, {}> {
+class Error extends React.Component<IErrorProps, {}> {
     public render() {
+        const {classes} = this.props;
         const { error } = this.props;
 
-        return <Paper style={{
-            margin: "auto",
-            marginTop: 30,
-            maxWidth: 700,
-            padding: 20,
-            width: "calc(100%-40px)"
-
-        }}>
+        return <Paper className={classes.paperContainer}>
             <Typography variant="title" gutterBottom={true}>
                 [Hum... Houston, we have a problem]
             </Typography>
@@ -33,3 +28,5 @@ export default class Error extends React.Component<IErrorProps, {}> {
     }
 
 }
+
+export default withStyles(Styles as any)(Error);

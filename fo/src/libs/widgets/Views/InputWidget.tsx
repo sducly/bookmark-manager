@@ -16,8 +16,5 @@ export default ({ name, label, type = "text", required = true, onChange, error =
         id={name}
         name={name}
         label={label}
-        fullWidth={true}
-        style={{
-            width: "100%"
-        }}/>;
+        fullWidth={true}/>;
 }

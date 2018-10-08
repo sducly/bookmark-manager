@@ -48,10 +48,7 @@ class BookmarkToolbar extends React.Component<any, {}> {
                     size="small"
                     color="secondary"
                     mini={true}
-                    className={classes.button}
-                    style={{
-                        height: "100%"
-                    }}>
+                    className={classes.button}>
                     <SaveIcon className={classes.leftIcon} />
                     Add bookmark
                 </Button>
