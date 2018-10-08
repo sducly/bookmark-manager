@@ -10,7 +10,7 @@ import Styles from "../../layout/styles";
 import Loading from "../../layout/Views/Loading";
 import { ComponentsPathEnum } from "../../workflow";
 import { BookmarkQuery, UpdateBookmark } from "../queries";
-import { getPicturesInfo, getVideoInfo } from "../services";
+import { generateEmptyApiResult, getPicturesInfo, getVideoInfo } from "../services";
 import { IApiResult } from "../types";
 import { BookmarkForm } from "./Includes/BookmarkForm";
 import { VideoForm } from "./Includes/VideoForm";
@@ -21,18 +21,7 @@ class BookmarkFormView extends React.Component<IBookmarkFormProps, { redirectUrl
         this.handleChangeUrl = this.handleChangeUrl.bind(this);
 
         this.state = {
-            apiResult: {
-                addedDate: "",
-                authorName: "",
-                height: 0,
-                id: this.props.match.id,
-                tags: "",
-                thumbUrl: "",
-                title: "",
-                type: null,
-                url: "",
-                width: 0
-            },
+            apiResult: {...generateEmptyApiResult(), id: this.props.match.id },
             isLoading: false,
             redirectUrl: null
         }

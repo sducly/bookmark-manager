@@ -8,17 +8,28 @@ export class UserController {
     constructor(private entityManager: EntityManager) {
     }
 
+    /**
+     * FinnAll Users
+     */
     @Query()
     users() {
         return this.entityManager.find(User);
     }
 
-  @Query()
-  user({id}) {
-    return this.entityManager.findOne(User, id);
-  }
+    /**
+     * Find one user by Id
+     * @param param0 Object
+     */
+    @Query()
+    user({ id }) {
+        return this.entityManager.findOne(User, id);
+    }
 
 
+    /**
+     * Find one user By Token
+     * @param param0 Object
+     */
     @Query()
     getUserByToken({ token }) {
         return this
@@ -32,6 +43,10 @@ export class UserController {
             .getOne();
     }
 
+    /**
+     * Find one user by email and password
+     * @param param0 Object
+     */
     @Query()
     authenticateUser({ email, password }) {
         return this
@@ -47,27 +62,27 @@ export class UserController {
             .getOne();
     }
 
+    /**
+     * Update new or existing user
+     * @param args Object
+     */
     @Mutation()
     async updateUser(args) {
-    
+
         let user = new User();
 
-        if(args.id > 0) {
+        if (args.id > 0) {
             user = await this.entityManager.findOne(User, args.id);
-                user.firstName = args.firstName;
-                user.lastName = args.lastName;
-                user.email = args.email;
-                user.password = args.password;
+            user.firstName = args.firstName;
+            user.lastName = args.lastName;
+            user.email = args.email;
+            user.password = args.password;
         } else {
             user = this.entityManager.create(User, args);
             user.token = crypto.randomBytes(32).toString("base64");
             user.salt = crypto.randomBytes(32).toString("base64");
         }
 
-        
-
         return this.entityManager.save(user);
-        
-        
-    }
+}
 }

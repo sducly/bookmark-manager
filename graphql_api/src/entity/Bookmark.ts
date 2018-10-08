@@ -2,6 +2,9 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, JoinColumn
 import { User } from './User';
 import { Video } from './Video';
 
+/**
+ * Bookmark entity
+ */
 @Entity()
 export class Bookmark {
 

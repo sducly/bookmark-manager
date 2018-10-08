@@ -11,6 +11,10 @@ export class BookmarkController {
   constructor(private entityManager: EntityManager) {
   }
 
+  /**
+   * CountBookmarks filtered by title, type and userId
+   * @param param0 
+   */
   @Query()
   countBookmark({ title, type, userId }) {
     const query = this.entityManager.createQueryBuilder(Bookmark, "b").innerJoin("b.user", "u").andWhere('u.id = :userId', { userId });
@@ -26,7 +30,10 @@ export class BookmarkController {
     return query.getCount();
   }
 
-  // serves "Bookmark: [Bookmark]" requests
+  /**
+   * Find bookmarks by filter by title, type and userId. Limited results and offset
+   * @param param0 
+   */
   @Query()
   bookmarks({ page = 1, limit = 1, title, type, userId }) {
     const query = this.entityManager.createQueryBuilder(Bookmark, "b").innerJoin("b.user", "u").andWhere('u.id = :userId', { userId });
@@ -44,13 +51,19 @@ export class BookmarkController {
     return query.limit(limit).offset((page - 1) * limit).getMany();
   }
 
-  // serves "BookmarkGet(id: Int): Bookmark" requests
+  /**
+   * Find bookmark by Id
+   * @param param0 Object
+   */
   @Query()
   bookmark({ id }) {
     return this.entityManager.findOne(Bookmark, id);
   }
 
-  // serves "BookmarkSave(id: Int, date: Date, exercise: Int, diet: Int, alcohol: Int, notes: String): Bookmark" requests
+  /**
+   * Update new or existing bookmark
+   * @param args Object
+   */
   @Mutation()
   async updateBookmark(args) {
     const bookmark = this.entityManager.create(Bookmark, args);
@@ -75,7 +88,10 @@ export class BookmarkController {
     return this.entityManager.save(Bookmark, bookmark);
   }
 
-  // serves "BookmarkDelete(id: Int): Boolean" requests
+  /**
+   * Remove bookmark by Id
+   * @param param0 Object
+   */
   @Mutation()
   async deleteBookmark({ id }) {
     await this.entityManager.remove(Bookmark, { id: id });

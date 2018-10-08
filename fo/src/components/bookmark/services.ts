@@ -82,17 +82,7 @@ export const getPicturesInfo = async (url: string): Promise<IApiResult> => {
             }
         }
     }
-    return {
-        addedDate: "",
-        authorName: "",
-        height: 0,
-        tags: "",
-        thumbUrl: "",
-        title: "",
-        type: BookmarkTypeEnum.VIDEO,
-        url: "",
-        width: 0
-    };
+    return generateEmptyApiResult();
 }
 
 /**
@@ -121,6 +111,14 @@ export const getVideoInfo = async (url: string): Promise<IApiResult> => {
         }
     }
 
+    return generateEmptyApiResult();
+
+}
+
+/**
+ * Generate an empty api result
+ */
+export const generateEmptyApiResult = () => {
     return {
         addedDate: "",
         authorName: "",
@@ -128,9 +126,11 @@ export const getVideoInfo = async (url: string): Promise<IApiResult> => {
         tags: "",
         thumbUrl: "",
         title: "",
-        type: BookmarkTypeEnum.VIDEO,
+        type: null,
         url: "",
+        video: {
+            duration: 0
+        },
         width: 0
     }
-
 }
