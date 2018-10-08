@@ -1,6 +1,9 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
 import * as React from "react";
 
+/**
+ * Select widget
+ */
 export default ({ name, options, label, value = "", onChange }: { name: string, options: any, label: string, value?: any, onChange: () => void }) => {
     const menuItems: Array<React.ReactElement<any>> = [];
 

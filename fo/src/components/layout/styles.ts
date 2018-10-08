@@ -2,6 +2,9 @@ import { Theme } from "@material-ui/core";
 
 const drawerWidth = 240;
 
+/**
+ * Override theme style
+ */
 const AppStyle = (theme: Theme) => {
   return {
     appBar: {

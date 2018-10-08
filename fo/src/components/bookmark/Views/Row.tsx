@@ -45,18 +45,24 @@ export const Row = ({ bookmark, reload }: { bookmark: Bookmark, reload: () => vo
         <TableCell>{bookmark.title}</TableCell>
         <TableCell>{bookmark.authorName}</TableCell>
         <TableCell>{moment(bookmark.addedDate).format('L')}</TableCell>
+
+        {/* ACTIONS */}
         <TableCell numeric={true}>
             <div style={{ display: "flex" }}>
-                <Button href={bookmark.url} target="_blank" aria-label="Delete" mini={true} color="default" variant={"fab"} style={ButtonStyle}>
+
+                {/* Link to the bookmark url */}
+                <Button href={bookmark.url} target="_blank" aria-label="Link" mini={true} color="default" variant={"fab"} style={ButtonStyle}>
                     <LinkIcon style={{ fontSize: 20 }} />
                 </Button>
 
+                {/* Edit link */}
                 <Link to={editUrl}>
                     <Button mini={true} color="primary" variant={"fab"} style={ButtonStyle}>
                         <EditIcon style={{ fontSize: 20 }} />
                     </Button>
                 </Link>
 
+                {/* Delete confirm */}
                 <AlertDialog
                     title="Are you sure ?"
                     content="You are about to delete a bookmark. Do you want to continue ?"

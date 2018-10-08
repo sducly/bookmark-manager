@@ -16,6 +16,9 @@ interface IPaginationProps {
   onChangePage: (event: any, page: number) => void
 }
 
+/**
+ * Table pagination component
+ */
 class TablePaginationComponent extends React.Component<IPaginationProps, {}> {
 
   public render() {
@@ -55,18 +58,30 @@ class TablePaginationComponent extends React.Component<IPaginationProps, {}> {
     );
   }
 
+  /**
+   * Handle when click on first page button
+   */
   private handleFirstPageButtonClick = (event: any) => {
     this.props.onChangePage(event, 1);
   };
 
+  /**
+   * Handle when click on back button
+   */
   private handleBackButtonClick = (event: any) => {
     this.props.onChangePage(event, this.props.page);
   };
 
+  /**
+   * Handle when click on next button
+   */
   private handleNextButtonClick = (event: any) => {
     this.props.onChangePage(event, this.props.page + 2);
   };
 
+  /**
+   * Handle when click on last page button
+   */
   private handleLastPageButtonClick = (event: any) => {
     this.props.onChangePage(
       event,

@@ -1,6 +1,9 @@
 import { User, Video } from "..";
 import { BookmarkTypeEnum } from "..";
 
+/**
+ * Bookmark entity
+ */
 export default class Bookmark {
   public id: number
   public type: BookmarkTypeEnum

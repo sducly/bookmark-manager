@@ -5,6 +5,9 @@ import { Signin } from "../../../signin";
 import { CreateAccount } from "../../../user";
 import NotFound from "../NotFound";
 
+/**
+ * Public routes. For all anonymous users
+ */
 export const PublicRoutes = () => {
     return <Router>
         <Switch>

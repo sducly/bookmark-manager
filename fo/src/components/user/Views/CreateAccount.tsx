@@ -12,6 +12,9 @@ import { SaveToken } from '../services';
 import { ICreateAccountProps } from '../types';
 import CreateAccountForm from './CreateAccountForm';
 
+/**
+ * Create Account Screen
+ */
 class CreateAccount extends React.Component<ICreateAccountProps, {}> {
 
     constructor(props: ICreateAccountProps) {
@@ -44,6 +47,9 @@ class CreateAccount extends React.Component<ICreateAccountProps, {}> {
         );
     }
 
+    /**
+     * Save user token in session_storage
+     */
     private postSubmit(data: any) {
         const user: User = data.updateUser;
         SaveToken(user);

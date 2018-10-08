@@ -11,6 +11,9 @@ import { UserQuery } from '../queries';
 import { IUpdateAccountProps } from '../types';
 import CreateAccountForm from './CreateAccountForm';
 
+/**
+ * Update Account Screen
+ */
 class UpdateAccount extends React.Component<IUpdateAccountProps, {}> {
 
     constructor(props: IUpdateAccountProps) {
@@ -48,6 +51,9 @@ class UpdateAccount extends React.Component<IUpdateAccountProps, {}> {
         );
     }
 
+    /**
+     * After updating user we reload user data
+     */
     private async postSubmit() {
         await this.props.getUser();
     }

@@ -18,9 +18,10 @@ class BookmarkList extends React.Component<IListViewProps, {}> {
         return <React.Fragment>
             <Typography variant="display1" gutterBottom={true} component="h2">
                 Bookmarks
-      </Typography>
+            </Typography>
             
             <div className={classes.tableContainer}>
+
                 <Table query={BookmarksQuery} limit={5} toolbar={BookmarkToolbar} key={"bookmark-datatable"} variables={{
                     userId: this.props.user.id
                 }}>
@@ -38,9 +39,12 @@ class BookmarkList extends React.Component<IListViewProps, {}> {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
+                                
+                                {/* Loop in each bookmark */}
                                 {results.map((b: Bookmark) => {
                                     return <Row bookmark={b} key={'boomark_row_' + b.id} reload={reload}/>
                                 })}
+                                
                             </TableBody>
                         </React.Fragment>
                     }}

@@ -11,6 +11,10 @@ import Styles from '../../layout/styles';
 import { AuthenticateUser } from '../../user';
 import { ComponentsPathEnum, redirect } from '../../workflow';
 
+
+/**
+ * Signin Screen
+ */
 class Signin extends React.Component<ISigninProps, {}> {
 
     constructor(props: ISigninProps) {
@@ -39,6 +43,10 @@ class Signin extends React.Component<ISigninProps, {}> {
         )
     }
 
+    /**
+     * Try to connect the user. If success, user will be the redirect to the homepage
+     * @param e FormEvent
+     */
     private async authenticateUser(e: any) {
         const user = await AuthenticateUser(e);
 

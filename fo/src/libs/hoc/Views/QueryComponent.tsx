@@ -6,7 +6,10 @@ import { IQueryProps } from "../";
 import { Error } from "../../../components/layout";
 import { Loading } from "../../../components/layout";
 
-
+/**
+ * Query component
+ * Query a apollo GraphqlQL API
+ */
 export default class QueryComponent extends React.Component<IQueryProps, {}>  {
 
     public render() {

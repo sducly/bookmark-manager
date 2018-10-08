@@ -3,6 +3,10 @@ import * as React from "react";
 import { InputWidget } from "../index";
 import { IPasswordProps, IPasswordState } from "../types";
 
+/**
+ * Password widget 
+ * Display an input password with confirmation
+ */
 export default class Password extends React.Component<IPasswordProps, IPasswordState> {
 
     constructor(props: IPasswordProps) {
@@ -44,6 +48,10 @@ export default class Password extends React.Component<IPasswordProps, IPasswordS
         </React.Fragment>
     }
 
+    /**
+     * Handle inputs change
+     * @param e FormEvent
+     */
     private _onChange(e: any) {
         this.setState({
             [e.target.name]: e.target.value

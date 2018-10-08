@@ -2,6 +2,9 @@ import { Paper, Typography } from "@material-ui/core";
 import * as React from "react";
 import { IErrorProps } from "../";
 
+/**
+ * Error Screen
+ */
 export default class Error extends React.Component<IErrorProps, {}> {
     public render() {
         const { error } = this.props;

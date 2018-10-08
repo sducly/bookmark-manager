@@ -7,6 +7,9 @@ import Layout from "../../../layout/Views/Layout";
 import { UpdateAccount } from "../../../user";
 import NotFound from "../NotFound";
 
+/**
+ * Privates routes. Only for authenticated user
+ */
 export const PrivatesRoutes = ({user, getUser}: {user: User, getUser: () => void}) => {
     return <Router>
     <Layout user={user}>

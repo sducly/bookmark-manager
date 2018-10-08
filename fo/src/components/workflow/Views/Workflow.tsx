@@ -6,6 +6,9 @@ import { GetUser } from "../../user";
 import { PrivatesRoutes } from "./Includes/PrivateRoutes";
 import { PublicRoutes } from "./Includes/PublicRoutes";
 
+/**
+ * Worfklow
+ */
 export default class Workflow extends React.Component<{}, IWorkflowState> {
 
     constructor(props: {}) {
@@ -22,17 +25,24 @@ export default class Workflow extends React.Component<{}, IWorkflowState> {
     public render() {
 
         const { user } = this.state;
+
+        {/* App is not initialized */}
         if (user === undefined) {
             return <Loading/>
         }
 
+        {/* User is authenticated */}
         if (user) {
             return <PrivatesRoutes user={user} getUser={this.getUser}/>
         }
 
+        {/* Anonymous user */}
         return <PublicRoutes/>
     }
 
+    /**
+     * Return the current user
+     */
     private async getUser() {
         const user = await GetUser();
 

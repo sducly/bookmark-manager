@@ -5,7 +5,10 @@ import { Redirect } from "react-router";
 import { IFormProps, IFormState, IQueryResponse, Query } from "../";
 import { Client } from "../../../schema";
 
-
+/**
+ * Form component
+ * Fetch entity with Query. Render mutation form
+ */
 export default class FormComponent extends React.Component<IFormProps, IFormState> {
 
     private update: ({ }) => void;
@@ -38,6 +41,10 @@ export default class FormComponent extends React.Component<IFormProps, IFormStat
         </Query>
     }
 
+    /**
+     * Render the mutation part (only form)
+     * @param queryData IQueryResult
+     */
     private renderMutation(queryData: any) {
         const { children }: any = this.props;
 
@@ -56,6 +63,10 @@ export default class FormComponent extends React.Component<IFormProps, IFormStat
 
         return this.renderChildren(children, {});
     }
+
+    /**
+     * Render form and childre. Pass query data on parameters
+     */
     private renderChildren(children: any, data: any) {
         return <form
             className="form-component"
@@ -65,6 +76,9 @@ export default class FormComponent extends React.Component<IFormProps, IFormStat
         </form>
     }
 
+    /**
+     * Handle form submit
+     */
     private async _onSubmit(e: React.FormEvent) {
         e.preventDefault();
         const form = e.currentTarget;

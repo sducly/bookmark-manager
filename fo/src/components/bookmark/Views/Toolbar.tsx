@@ -3,9 +3,14 @@ import SaveIcon from '@material-ui/icons/Save';
 import * as React from "react";
 import { generatePath, Link } from "react-router-dom";
 import { InputWidget, SelectWidget } from "../../../libs/widgets";
+import { BookmarkTypeEnum } from "../../../schema";
 import Styles from "../../layout/styles";
 import { ComponentsPathEnum } from "../../workflow";
 
+/**
+ * Override link to add custom props
+ * @param props {}
+ */
 const AddLink = (props: {}) => {
     const url = generatePath(ComponentsPathEnum.BOOKMARK_FORM, {
         id: 0
@@ -31,10 +36,11 @@ class BookmarkToolbar extends React.Component<any, {}> {
             <Grid item={true} xs={12} sm={3}>
                 <SelectWidget onChange={onChange} key="toolbar-bookmark-type" label="Type" value={(type) ? type : ""} name="type" options={[
                     { label: "", value: null },
-                    { label: "Picture", value: "picture" },
-                    { label: "Videos", value: "video" },
+                    { label: "Picture", value: BookmarkTypeEnum.PICTURE },
+                    { label: "Videos", value: BookmarkTypeEnum.VIDEO },
                 ]} />
             </Grid>
+            
             <Grid item={true}>
                 <Button
                     component={AddLink}
@@ -48,7 +54,8 @@ class BookmarkToolbar extends React.Component<any, {}> {
                     }}>
                     <SaveIcon className={classes.leftIcon} />
                     Add bookmark
-      </Button>
+                </Button>
+
             </Grid>
         </Grid>
     }

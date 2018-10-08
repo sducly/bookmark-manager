@@ -8,6 +8,9 @@ import Styles from "../styles";
 import { ILayoutProps } from '../types';
 import Drawer from './Includes/Drawer';
 
+/**
+ * Main Layout on private components
+ */
 class Layout extends React.Component<ILayoutProps, { open: boolean }> {
 
   constructor(props: ILayoutProps) {
@@ -42,19 +45,27 @@ class Layout extends React.Component<ILayoutProps, { open: boolean }> {
     );
   }
 
+  /**
+   * Disconnect the user
+   */
   private logOut() {
     RemoveToken();
     redirect(ComponentsPathEnum.HOME);
   }
 
+  /**
+   * Open the drawer
+   */
   private handleDrawerOpen = () => {
     this.setState({ open: true });
   };
 
+  /**
+   * Close the drawer
+   */
   private handleDrawerClose = () => {
     this.setState({ open: false });
   };
-
 
 }
 

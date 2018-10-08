@@ -13,7 +13,11 @@ function Transition(props: {}) {
     return <Slide direction="up" {...props} />;
 }
 
+/**
+ * Dialog Component
+ */
 export default class AlertDialog extends React.Component<IDialogProps, IDialogState> {
+
     constructor(props: IDialogProps) {
         super(props);
 
@@ -58,8 +62,9 @@ export default class AlertDialog extends React.Component<IDialogProps, IDialogSt
                         </DialogContentText>
                     </DialogContent>
 
+                    {/* ACTIONS */}
                     <DialogActions>
-                        
+
                         <Button onClick={this.handleClose} color="primary">
                             Disagree
                         </Button>
@@ -74,6 +79,9 @@ export default class AlertDialog extends React.Component<IDialogProps, IDialogSt
         );
     }
 
+    /**
+     * If dialog is confirm. call the callback and close the dialog
+     */
     private async handleOnConfirm() {
         const hasDeleted = await this.props.onConfirm(this.props.confirmParams);
         
@@ -86,10 +94,16 @@ export default class AlertDialog extends React.Component<IDialogProps, IDialogSt
         this.handleClose();
     }
 
+    /**
+     * Open the dialog modal
+     */
     private handleClickOpen = () => {
         this.setState({ open: true });
     };
 
+    /**
+     * Close the dialog modal
+     */
     private handleClose = () => {
         this.setState({ open: false });
     };

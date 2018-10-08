@@ -1,6 +1,9 @@
 import { LinearProgress, Paper, Typography } from "@material-ui/core";
 import * as React from "react";
 
+/**
+ * Loading Screen
+ */
 export default class Loading extends React.Component {
     public render() {
         return <React.Fragment>

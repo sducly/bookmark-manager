@@ -3,6 +3,10 @@ import { AuthenticateUserQuery, GetUserByTokenQuery } from './queries';
 
 const TOKEN_SESSION_NAME = "user_token";
 
+/**
+ * Get credentiels from FormEvent and try to connect him. If success save the token
+ * @param e FormEvent
+ */
 export const AuthenticateUser = async (e: any) => {
     e.preventDefault();
     const form: HTMLFormElement = e.target;
@@ -29,6 +33,9 @@ export const AuthenticateUser = async (e: any) => {
     }
 }
 
+/**
+ * Get the current user by token
+ */
 export const GetUser = async () => {
     const token = GetToken();
     if (token) {
@@ -47,14 +54,24 @@ export const GetUser = async () => {
     return null;
 }
 
+/**
+ * Store token in session_storage
+ * @param user User
+ */
 export const SaveToken = (user: User) => {
     sessionStorage.setItem(TOKEN_SESSION_NAME, user.token);
 }
 
+/**
+ * Retrieve token from session_storage
+ */
 export const GetToken = () => {
     return sessionStorage.getItem(TOKEN_SESSION_NAME);
 }
 
+/**
+ * Remove token stored in session_storage
+ */
 export const RemoveToken = () => {
     sessionStorage.removeItem(TOKEN_SESSION_NAME);
 }

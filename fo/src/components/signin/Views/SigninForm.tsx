@@ -9,6 +9,9 @@ import { Grid } from "@material-ui/core";
 import { ISiginFormProps } from "../";
 import { ComponentsPathEnum } from '../../workflow';
 
+/**
+ * Signin Form
+ */
 export default class SigninForm extends React.Component<ISiginFormProps, {}> {
     public render() {
         const { classes } = this.props;

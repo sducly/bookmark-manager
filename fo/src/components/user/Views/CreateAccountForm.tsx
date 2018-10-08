@@ -6,6 +6,9 @@ import { HiddenWidget, InputWidget, PasswordWidget } from '../../../libs/widgets
 import { User } from "../../../schema";
 import { ICreateAccountFormProps } from "../types";
 
+/**
+ * Create Account Form
+ */
 export default class CreateAccountForm extends React.Component<ICreateAccountFormProps, {}> {
     public render() {
         const { classes } = this.props;

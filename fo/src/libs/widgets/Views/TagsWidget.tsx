@@ -3,7 +3,11 @@ import * as React from "react";
 import { HiddenWidget } from "../";
 import { IInputProps } from "../types";
 
+/**
+ * Tags widget
+ */
 export default class Tags extends React.Component<IInputProps, { values?: string | number }> {
+
     constructor(props: IInputProps) {
         super(props);
         this.state = {
@@ -26,6 +30,9 @@ export default class Tags extends React.Component<IInputProps, { values?: string
         </React.Fragment>
     }
 
+    /**
+     * Return a array of string
+     */
     private getArrayValues() {
         const { defaultValue } = this.props;
 
@@ -36,6 +43,10 @@ export default class Tags extends React.Component<IInputProps, { values?: string
         return defaultValue.toString().split(',');
     }
 
+    /**
+     * Handle Change on tags list (remove, add, ...)
+     * @param tags String[]
+     */
     private handleChange(tags: string[]) {
         this.setState({
             values: tags.join()

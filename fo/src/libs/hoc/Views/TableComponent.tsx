@@ -6,7 +6,10 @@ import { Query } from "../";
 import { IQueryResponse, ITableProps } from "../";
 import TablePaginationComponent from "./TablePaginationComponent";
 
-
+/**
+ * Table Component
+ * Query data from Graphql API
+ */
 export default class TableComponent extends React.Component<ITableProps, {toolbarData: {}}>  {
 
   private fetch?: (T: any) => Promise<ApolloQueryResult<any>>;
@@ -28,12 +31,17 @@ export default class TableComponent extends React.Component<ITableProps, {toolba
     const v = {...this.props.variables, limit: this.props.limit};
     return <Query query={this.props.query} variables={v}>
       {({ data, fetchMore }: IQueryResponse): any => {
+        
         const children: any = this.props.children;
         this.fetch = fetchMore;
+
         return <React.Fragment>
           {this.renderToolbar()}
           <Table>
+
           {children({ data }, this.reload)}
+
+          {/* FOOTER */}
           <TableFooter>
             <TableRow>
               <TablePagination
@@ -47,12 +55,17 @@ export default class TableComponent extends React.Component<ITableProps, {toolba
               />
             </TableRow>
           </TableFooter>
+
         </Table>
+
         </React.Fragment>
       }}
     </Query>
   }
 
+  /**
+   * Display toolbar if defined
+   */
   private renderToolbar() {
     if(this.props.toolbar) {
       const Toolbar = this.props.toolbar;
@@ -63,6 +76,10 @@ export default class TableComponent extends React.Component<ITableProps, {toolba
     return;
   }
 
+  /**
+   * Manage form change on Toolbar
+   * @param e FormEvent
+   */
   private handleToolbarChange(e: React.SyntheticEvent) {
     const input: HTMLInputElement = e.target as HTMLInputElement;
     const data = this.state.toolbarData;
@@ -82,6 +99,10 @@ export default class TableComponent extends React.Component<ITableProps, {toolba
     this.handleChangePage(null, this.page);
   }
 
+
+  /**
+   * Handle page change. Fetch data for the new page
+   */
   private handleChangePage = (event: any, page: any) => {
     this.page = page;
 
