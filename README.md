@@ -10,7 +10,7 @@ Bookmark manager est basé sur les technologies suivantes:
 ### Prérequis
 - Git
 - Nodejs
-- Un serveur MySQL
+- Accès et base MySQL : Vous devez renseigner vos informations de connexion dans le fichier ORM Config File situé ./graphql_api/ormconfig.json
 - Github app and credential [GITHUB_CLIENT_ID,GITHUB_CLIENT_SECRET](https://developer.github.com/v3/guides/basics-of-authentication/#accepting-user-authorization)
 - Yarn: npm i -g yarn
 - TypeORM: npm i -g typeorm
