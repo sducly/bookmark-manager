@@ -36,6 +36,7 @@ export const Row = ({ bookmark, reload }: { bookmark: Bookmark, reload: () => vo
         id: bookmark.id
     });
     return <TableRow>
+        
         <TableCell>{bookmark.id}</TableCell>
         <TableCell>
             <img src={bookmark.thumbUrl} style={{
@@ -80,6 +81,7 @@ export const Row = ({ bookmark, reload }: { bookmark: Bookmark, reload: () => vo
 
                 </AlertDialog>
             </div>
+
         </TableCell>
     </TableRow>
 }
