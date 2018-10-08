@@ -33,7 +33,7 @@ yarn start
 Afin d'utiliser l'application vous devez créer un compte utilisateur. Pour cela, rendez vous [ici](http://localhost:3000/create-account). Le compte crée sera automatiquement validé et disponible.
 
 ### API Vimeo / Flickr
-L'application utilise les API Viméo et Flickr afin de récupérer les informations courantes du bookmark (titre, auteur, larguer / hauteur, tags,...).
+L'application utilise les API Viméo et Flickr afin de récupérer les informations courantes du bookmark (titre, auteur, largeur / hauteur, tags,...).
 Vous pouvez modifier les informations de connexion en éditant le fichier .env situé dans le dossier ./fo
 ```
 vim ./fo/.env
