@@ -3,7 +3,7 @@ import { Bookmark } from "../";
 /**
  * User entity
  */
-export default  class User {
+export default class User {
   public id: number = 0;
   public firstName: string;
   public lastName: string;
