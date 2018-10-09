@@ -17,7 +17,7 @@ export class Bookmark {
   @Column()
   url: String
 
-  @Column()
+  @Column("varchar", { length: 500 })
   title: String
 
   @Column()
@@ -35,7 +35,7 @@ export class Bookmark {
   @Column()
   thumbUrl: String
 
-  @Column({ length: 300, nullable: true })
+  @Column("text", { nullable: true })
   tags: String
 
   @OneToOne(type => Video, { cascade: ["insert"] })
